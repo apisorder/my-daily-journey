@@ -2,7 +2,7 @@
   "name": "react-jst",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://apisorder.github.io/react-jst/",
+  "homepage": "https://apisorder.github.io/my-daily-journey/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
