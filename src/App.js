@@ -9,6 +9,7 @@ import {
   Route, 
   Link } from "react-router-dom";
 
+// to enable linked routes to always go to the top of the page
 import ScrollToTop from './components/ScrollToTop';
 
 // header
@@ -27,14 +28,23 @@ import ButtonStyled from './components/ButtonStyled';
 
 // components for each individual route
 import Home from './components/Home';
-import Setup from './components/Setup';
-import Variables from './components/Variables';
-import DataTypes from './components/DataTypes';
+import RawFood from './components/RawFood';
+import CookedFood from './components/CookedFood';
+import NumericCalculations from './components/NumericCalculations';
+import Branches from './components/Branches';
+import QuadraticEquation from './components/QuadraticEquation';
+import Characters from './components/Characters';
+import Arrays from './components/Arrays';
+import Loops from './components/Loops';
+import Functions from './components/Functions';
+import Files from './components/Files';
+import Objects from './components/Objects';
+import Library from './components/Library';
+import Quiz from './components/Quiz';
 
-// CSS
+// global CSS
 import { createGlobalStyle } from 'styled-components';
 import background from './images/background.png';
-
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
@@ -55,93 +65,217 @@ const App = () => {
 
           {/* upper-div: header */}
           {/* header */}
-          {/* <div> */}
           <DividerStyled>
             <Header>
-          <Logo />
-          </Header>
-            {/* <ul style={{display: "inline-block"}}>
-              <li style={{display: "inline-block"}}><Link to="/">((Home))</Link></li>
-              <li style={{display: "inline-block"}}><Link to="/setup">((Setup))</Link></li>
-            </ul> */}
-          {/* </div> */}
+              <Logo />
+            </Header>
           </DividerStyled>
           {/* header */}
           {/* upper-div: header */}
 
 
         {/* middle-div: sidebar (left) & main display (right) */}
-        {/* <div style={{ display: "flex" }}> */}
         <DividerStyled parallel>
 
           {/* side bar */}
-          {/* <DividerStyled sidebar> */}
-          {/* <div> */}
           <DividerStyled>
             
-            {/* <Logo /> */}
-
-            {/* <ul> */}
             <UnorderedListStyled sidebar>
-              <ListItemStyled popout>
-              {/* <li> */}
-                <Link to="/"><ButtonStyled popout>Home</ButtonStyled></Link>
-                {/* </li> */}
-              </ListItemStyled>
+
               <ListItemStyled>
-              {/* <li> */}
-                <Link to="/setup"><ButtonStyled>Setup</ButtonStyled></Link>
-                {/* </li> */}
-                </ListItemStyled>
-              {/* <li> */}
-              <ListItemStyled popout>
-                <Link to="/variables"><ButtonStyled popout>Variables</ButtonStyled></Link>
-                {/* </li> */}
-                </ListItemStyled>
-              {/* <li> */}
-              <ListItemStyled>
-                <Link to="/data-types"><ButtonStyled>Data Types</ButtonStyled></Link>
-                {/* </li> */}
+                <Link to="/">
+                  <ButtonStyled popout>
+                    Home
+                  </ButtonStyled>
+                </Link>
               </ListItemStyled>
-            {/* </ul> */}
+
+              <ListItemStyled>
+                <Link to="/raw-food">
+                  <ButtonStyled>
+                    Raw Food
+                  </ButtonStyled>
+                </Link>
+              </ListItemStyled>
+
+              <ListItemStyled>
+                <Link to="/cooked-food">
+                  <ButtonStyled popout>
+                  Cooked Food
+                  </ButtonStyled>
+                </Link>
+              </ListItemStyled>
+
+              <ListItemStyled>
+                <Link to="/numeric-calculations">
+                  <ButtonStyled>
+                    3. Numeric Calculations
+                  </ButtonStyled>
+                </Link>
+              </ListItemStyled>
+
+              <ListItemStyled>
+                <Link to="/branches">
+                  <ButtonStyled popout>
+                    4. Branches
+                  </ButtonStyled>
+                </Link>
+              </ListItemStyled>
+
+              <ListItemStyled>
+                <Link to="/quadratic-equation">
+                  <ButtonStyled>
+                    5. Quadratic Equation
+                  </ButtonStyled>
+                </Link>
+              </ListItemStyled>
+
+              <ListItemStyled>
+                <Link to="/string">
+                  <ButtonStyled popout>
+                    6. String
+                  </ButtonStyled>
+                </Link>
+              </ListItemStyled>
+
+              <ListItemStyled>
+                <Link to="/arrays">
+                  <ButtonStyled>
+                    7. Arrays
+                  </ButtonStyled>
+                </Link>
+              </ListItemStyled>
+
+              <ListItemStyled>
+                <Link to="/loops">
+                  <ButtonStyled popout>
+                    8. Loops
+                  </ButtonStyled>
+                </Link>
+              </ListItemStyled>
+
+              <ListItemStyled>
+                <Link to="/functions">
+                  <ButtonStyled>
+                    9. Functions
+                  </ButtonStyled>
+                </Link>
+              </ListItemStyled>
+
+              <ListItemStyled>
+                <Link to="/files">
+                  <ButtonStyled popout>
+                    10. Files
+                  </ButtonStyled>
+                </Link>
+              </ListItemStyled>
+
+              <ListItemStyled>
+                <Link to="/objects">
+                  <ButtonStyled>
+                    11. Objects
+                  </ButtonStyled>
+                </Link>
+              </ListItemStyled>
+
+              <ListItemStyled>
+                <Link to="/library">
+                  <ButtonStyled popout>
+                    12. Library
+                  </ButtonStyled>
+                </Link>
+              </ListItemStyled>
+
+              <ListItemStyled>
+                <Link to="/quiz">
+                  <ButtonStyled>
+                    Quiz
+                  </ButtonStyled>
+                </Link>
+              </ListItemStyled>
+              
             </UnorderedListStyled>
-          {/* </div> */}
-          </DividerStyled>
-          {/* </DividerStyled> */}
+
+          </DividerStyled>         
           {/* side bar */}
 
           {/* main display */}
-          {/* <div style={{ flex: 1}}> */}
           <DividerStyled>
             <Switch>
-              <Route exact path='/'><Home /></Route>          
-              <Route exact path='/setup'><Setup /></Route>          
-              <Route exact path='/variables'><Variables /></Route>          
-              <Route exact path='/data-types'><DataTypes /></Route>          
+
+              <Route exact path='/'>
+                <Home />
+              </Route>          
+
+              <Route exact path='/raw-food'>
+                <RawFood />
+              </Route>          
+
+              <Route exact path='/cooked-food'>
+                <CookedFood />
+              </Route>          
+
+              <Route exact path='/numeric-calculations'>
+                <NumericCalculations />
+              </Route>          
+
+              <Route exact path='/branches'>
+                <Branches />
+              </Route>          
+
+              <Route exact path='/quadratic-equation'>
+                <QuadraticEquation />
+              </Route>          
+
+              <Route exact path='/string'>
+                <Characters />
+              </Route>          
+
+              <Route exact path='/arrays'>
+                <Arrays />
+              </Route>          
+
+              <Route exact path='/loops'>
+                <Loops />
+              </Route>          
+
+              <Route exact path='/functions'>
+                <Functions />
+              </Route>          
+
+              <Route exact path='/files'>
+                <Files />
+              </Route>          
+
+              <Route exact path='/objects'>
+                <Objects />
+              </Route>          
+
+              <Route exact path='/library'>
+                <Library />
+              </Route>          
+
+              <Route exact path='/quiz'>
+                <Quiz />
+              </Route>          
+
             </Switch>
-          {/* </div> */}
+
           </DividerStyled>
           {/* main display */}
 
-          {/* </div> */}
-          </DividerStyled>
-          {/* middle-div: sidebar (left) & main display (right) */}
+        </DividerStyled>
+        {/* middle-div: sidebar (left) & main display (right) */}
           
-          {/* lower-div: footer */}
-          {/* footer */}
-          {/* <div> */}
-          <DividerStyled>
-            <Footer>
+        {/* lower-div: footer */}
+        {/* footer */}
+        <DividerStyled>
+          <Footer>
             <About />
-            {/* <ul style={{display: "inline-block"}}>
-              <li style={{display: "inline-block"}}><Link to="/">((Home))</Link></li>
-              <li style={{display: "inline-block"}}><Link to="/setup">((Setup))</Link></li>
-            </ul> */}
-            </Footer>
-          {/* </div> */}
-          </DividerStyled>
-          {/* footer */}
-          {/* lower-div: footer */}
+          </Footer>
+        </DividerStyled>
+        {/* footer */}
+        {/* lower-div: footer */}
 
       </Router>
     </>

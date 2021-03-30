@@ -2,12 +2,11 @@
 
 import styled, { css } from 'styled-components';
 
-const Header = styled.h1`
+const Subheader = styled.h2`
 color: Purple;
-margin: 0rem 16rem;
 
 ${props => props.title && css`
     text-align: center;
 `}
 `
-export default Header;
+export default Subheader;
