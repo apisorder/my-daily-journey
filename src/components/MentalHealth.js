@@ -19,13 +19,13 @@ import basicHTMLoutput from '../images/basicHTMLoutput.png';
 
 import { Link } from 'react-router-dom';
 
-const CookedFood = () => {
+const MentalHealth = () => {
     return (
         <>
             <DividerStyled>
                 {/* page title */}
                 <Header title>
-                    Cooked Food
+                    Mental Health
                 </Header>
                 {/* page title */}
 
@@ -44,13 +44,13 @@ const CookedFood = () => {
 
                 {/* page subtitle 1 */}
                 <Subheader title>
-                    Carbohydrates
+                    Fruit
                 </Subheader>
                 {/* page subtitle 1 */}
 
                 {/* paragraph 4 */}            
                 <ParagraphStyled paragraph>
-                    Carbohydrates entries
+                    Fruit entries
                 </ParagraphStyled>               
                 {/* paragraph 4 */}
             </DividerStyled>
@@ -58,27 +58,27 @@ const CookedFood = () => {
             <DividerStyled>
                 {/* page subtitle 2 */}
                 <Subheader title>
-                    Protein
+                    Veggie
                 </Subheader>
                 {/* page subtitle 2 */}
 
                 {/* paragraph 6 */}
                 <ParagraphStyled paragraph>
-                    Protein Entries
+                    Veggie Entries
                 </ParagraphStyled>               
                 {/* paragraph 6 */}
             </DividerStyled>            
 
             <DividerStyled footer>
                 <Footer>
-                    <Link to='/raw-food'>&lArr; Raw Food</Link>
+                    <Link to='/cooked-food'>&lArr; Cooked Food</Link>
                 </Footer>
 
                 <Footer>
-                    <Link to='/mental-health'>Mental Health &rArr;</Link>
+                    <Link to='/spiritual-health'>Spiritual Health &rArr;</Link>
                 </Footer>
             </DividerStyled>
         </>
     )
 }
-export default CookedFood;
+export default MentalHealth;

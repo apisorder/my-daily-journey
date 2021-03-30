@@ -30,17 +30,10 @@ import ButtonStyled from './components/ButtonStyled';
 import Home from './components/Home';
 import RawFood from './components/RawFood';
 import CookedFood from './components/CookedFood';
-import NumericCalculations from './components/NumericCalculations';
-import Branches from './components/Branches';
-import QuadraticEquation from './components/QuadraticEquation';
-import Characters from './components/Characters';
-import Arrays from './components/Arrays';
-import Loops from './components/Loops';
-import Functions from './components/Functions';
-import Files from './components/Files';
-import Objects from './components/Objects';
-import Library from './components/Library';
-import Quiz from './components/Quiz';
+import MentalHealth from './components/MentalHealth';
+import SpiritualHealth from './components/SpiritualHealth';
+import Reference from './components/Reference';
+import Summary from './components/Summary';
 
 // global CSS
 import { createGlobalStyle } from 'styled-components';
@@ -107,89 +100,33 @@ const App = () => {
               </ListItemStyled>
 
               <ListItemStyled>
-                <Link to="/numeric-calculations">
+                <Link to="/mental-health">
                   <ButtonStyled>
-                    3. Numeric Calculations
+                    Mental Health
                   </ButtonStyled>
                 </Link>
               </ListItemStyled>
 
               <ListItemStyled>
-                <Link to="/branches">
+                <Link to="/spiritual-health">
                   <ButtonStyled popout>
-                    4. Branches
+                  Spiritual Health
                   </ButtonStyled>
                 </Link>
               </ListItemStyled>
 
               <ListItemStyled>
-                <Link to="/quadratic-equation">
+                <Link to="/reference">
                   <ButtonStyled>
-                    5. Quadratic Equation
+                    Reference
                   </ButtonStyled>
                 </Link>
               </ListItemStyled>
 
               <ListItemStyled>
-                <Link to="/string">
+                <Link to="/summary">
                   <ButtonStyled popout>
-                    6. String
-                  </ButtonStyled>
-                </Link>
-              </ListItemStyled>
-
-              <ListItemStyled>
-                <Link to="/arrays">
-                  <ButtonStyled>
-                    7. Arrays
-                  </ButtonStyled>
-                </Link>
-              </ListItemStyled>
-
-              <ListItemStyled>
-                <Link to="/loops">
-                  <ButtonStyled popout>
-                    8. Loops
-                  </ButtonStyled>
-                </Link>
-              </ListItemStyled>
-
-              <ListItemStyled>
-                <Link to="/functions">
-                  <ButtonStyled>
-                    9. Functions
-                  </ButtonStyled>
-                </Link>
-              </ListItemStyled>
-
-              <ListItemStyled>
-                <Link to="/files">
-                  <ButtonStyled popout>
-                    10. Files
-                  </ButtonStyled>
-                </Link>
-              </ListItemStyled>
-
-              <ListItemStyled>
-                <Link to="/objects">
-                  <ButtonStyled>
-                    11. Objects
-                  </ButtonStyled>
-                </Link>
-              </ListItemStyled>
-
-              <ListItemStyled>
-                <Link to="/library">
-                  <ButtonStyled popout>
-                    12. Library
-                  </ButtonStyled>
-                </Link>
-              </ListItemStyled>
-
-              <ListItemStyled>
-                <Link to="/quiz">
-                  <ButtonStyled>
-                    Quiz
+                    Summary
                   </ButtonStyled>
                 </Link>
               </ListItemStyled>
@@ -215,48 +152,20 @@ const App = () => {
                 <CookedFood />
               </Route>          
 
-              <Route exact path='/numeric-calculations'>
-                <NumericCalculations />
+              <Route exact path='/mental-health'>
+                <MentalHealth />
               </Route>          
 
-              <Route exact path='/branches'>
-                <Branches />
+              <Route exact path='/spiritual-health'>
+                <SpiritualHealth />
               </Route>          
 
-              <Route exact path='/quadratic-equation'>
-                <QuadraticEquation />
+              <Route exact path='/reference'>
+                <Reference />
               </Route>          
 
-              <Route exact path='/string'>
-                <Characters />
-              </Route>          
-
-              <Route exact path='/arrays'>
-                <Arrays />
-              </Route>          
-
-              <Route exact path='/loops'>
-                <Loops />
-              </Route>          
-
-              <Route exact path='/functions'>
-                <Functions />
-              </Route>          
-
-              <Route exact path='/files'>
-                <Files />
-              </Route>          
-
-              <Route exact path='/objects'>
-                <Objects />
-              </Route>          
-
-              <Route exact path='/library'>
-                <Library />
-              </Route>          
-
-              <Route exact path='/quiz'>
-                <Quiz />
+              <Route exact path='/summary'>
+                <Summary />
               </Route>          
 
             </Switch>
