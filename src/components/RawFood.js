@@ -7,19 +7,13 @@ import Header from './Header';
 import Subheader from './Subheader';
 import Footer from './Footer';
 import ImageStyled from './ImageStyled';
+import ButtonStyled from './ButtonStyled';
 
 import Exampler from './Exampler';
 
-import browser from '../images/browser.png';
-import browserConsole from '../images/browserConsole.png';
-import commandPrompt from '../images/commandPrompt.png';
-import nodeInstalled from '../images/nodeInstalled.png';
-import basicHTML from '../images/basicHTML.png';
-import basicHTMLoutput from '../images/basicHTMLoutput.png';
-
 import { Link } from 'react-router-dom';
 
-const RawFood = () => {
+const RawFood = ({ myServings, myAddFruitServing1, myAddFruitServing2, myResetFruitServing }) => {
     return (
         <>
             <DividerStyled>
@@ -53,6 +47,37 @@ const RawFood = () => {
                     Fruit entries
                 </ParagraphStyled>               
                 {/* paragraph 4 */}
+            </DividerStyled>
+
+            <DividerStyled parallel2>
+                {/* <DividerStyled> */}
+                    <ButtonStyled narrow>
+                        Satisfied:
+                    </ButtonStyled>
+                    <ButtonStyled narrow>
+                        { myServings.fruits }
+                    </ButtonStyled>
+                {/* </DividerStyled> */}
+                {/* <DividerStyled> */}
+                    <ButtonStyled 
+                        narrow2
+                        onClick={ myAddFruitServing1 }>
+                        serving +1        
+                    </ButtonStyled>
+                {/* </DividerStyled> */}
+                {/* <DividerStyled> */}
+                    <ButtonStyled 
+                        narrow2
+                        onClick={ myAddFruitServing2 }>
+                        serving +2
+                    </ButtonStyled>
+
+                    <ButtonStyled 
+                        narrow
+                        onClick={ myResetFruitServing }>
+                        reset
+                    </ButtonStyled>
+                {/* </DividerStyled> */}
             </DividerStyled>
 
             <DividerStyled>

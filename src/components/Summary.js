@@ -10,16 +10,9 @@ import ImageStyled from './ImageStyled';
 
 import Exampler from './Exampler';
 
-import browser from '../images/browser.png';
-import browserConsole from '../images/browserConsole.png';
-import commandPrompt from '../images/commandPrompt.png';
-import nodeInstalled from '../images/nodeInstalled.png';
-import basicHTML from '../images/basicHTML.png';
-import basicHTMLoutput from '../images/basicHTMLoutput.png';
-
 import { Link } from 'react-router-dom';
 
-const Summary = () => {
+const Summary = ({ myServings }) => {
     return (
         <>
             <DividerStyled>
@@ -28,6 +21,11 @@ const Summary = () => {
                     Summary
                 </Header>
                 {/* page title */}
+
+                <div>
+                    current fruit servings: { myServings.fruits }
+                </div>
+                
 
                 {/* paragraph 1 */}
                 <ParagraphStyled paragraph>

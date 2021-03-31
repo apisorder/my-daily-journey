@@ -3,6 +3,7 @@
 import React from 'react';
 import DividerStyled from './DividerStyled';
 import ParagraphStyled from './ParagraphStyled';
+import ButtonStyled from './ButtonStyled';
 import Header from './Header';
 
 import {ReactComponent as HomeBuilding} from '../images/homeBuilding.svg';

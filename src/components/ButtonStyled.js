@@ -9,8 +9,30 @@ const ButtonStyled = styled.a`
   
   margin: 0rem 7rem;
   border: 7px solid white;
-  background: Thistle;
   color: MidnightBlue;
+  background: Thistle;
+
+  ${props => props.narrow && css`
+    font-size: 29px;
+    display: inline-block;
+    border-radius: 3px;
+  
+    margin: 2rem 2rem;
+    border: 7px solid white;
+    color: MidnightBlue;
+    background: Lavender;
+  `}
+
+  ${props => props.narrow2 && css`
+    font-size: 29px;
+    display: inline-block;
+    border-radius: 3px;
+  
+    margin: 2rem 2rem;
+    border: 7px solid white;
+    color: MidnightBlue;
+    background: Plum;
+    `}
 
   ${props => props.popout && css`
     background: Silver;

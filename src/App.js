@@ -1,6 +1,6 @@
 
 
-import React from "react";
+import React, { useState } from "react";
 
 // react router
 import { 
@@ -49,6 +49,35 @@ const GlobalStyle = createGlobalStyle`
 
 // main
 const App = () => {
+  // encourageMessage
+  const [ servings, setServings ] = useState({
+    fruits: 0,
+    veggies: 0,
+    carbohydrates: 0,
+    proteins: 0
+  })
+
+  const addFruitServing1 = () => (
+    setServings( servings => ({
+      ...servings,
+      fruits: servings.fruits + 1
+    }))
+  )
+
+  const addFruitServing2 = () => (
+    setServings( servings => ({
+      ...servings,
+      fruits: servings.fruits + 2
+    }))
+  )
+
+  const resetFruitServing = () => (
+    setServings( servings => ({
+      ...servings,
+      fruits: 0
+    }))
+  )
+
   return (
     <>
       <GlobalStyle />
@@ -141,11 +170,21 @@ const App = () => {
             <Switch>
 
               <Route exact path='/'>
-                <Home />
+                <Home 
+                  myServings={ servings }
+                  myAddFruitServing1={ addFruitServing1 }
+                  myAddFruitServing2={ addFruitServing2 }
+                  myResetFruitServing={ resetFruitServing }
+                  />
               </Route>          
 
               <Route exact path='/raw-food'>
-                <RawFood />
+                <RawFood 
+                  myServings={ servings }
+                  myAddFruitServing1={ addFruitServing1 }
+                  myAddFruitServing2={ addFruitServing2 }
+                  myResetFruitServing={ resetFruitServing }                
+                />
               </Route>          
 
               <Route exact path='/cooked-food'>
@@ -165,7 +204,9 @@ const App = () => {
               </Route>          
 
               <Route exact path='/summary'>
-                <Summary />
+                <Summary 
+                  myServings={ servings }                
+                />
               </Route>          
 
             </Switch>

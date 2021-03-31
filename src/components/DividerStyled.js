@@ -9,6 +9,11 @@ ${props => props.parallel && css`
     padding: 2rem 10rem 2rem 10rem;
 `}
 
+${props => props.parallel2 && css`
+    display: flex;
+    padding: 3rem 0rem 3rem 0rem;
+`}
+
 ${props => props.footer && css`
     display: flex;
     padding: 0rem 10rem 0rem 30rem;
