@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/my-daily-journey/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/my-daily-journey/static/js/main.6c868c69.chunk.js",
-    "main.js.map": "/my-daily-journey/static/js/main.6c868c69.chunk.js.map",
-    "runtime-main.js": "/my-daily-journey/static/js/runtime-main.38b51c6a.js",
-    "runtime-main.js.map": "/my-daily-journey/static/js/runtime-main.38b51c6a.js.map",
-    "static/js/2.7f94c630.chunk.js": "/my-daily-journey/static/js/2.7f94c630.chunk.js",
-    "static/js/2.7f94c630.chunk.js.map": "/my-daily-journey/static/js/2.7f94c630.chunk.js.map",
-    "static/js/3.90defdce.chunk.js": "/my-daily-journey/static/js/3.90defdce.chunk.js",
-    "static/js/3.90defdce.chunk.js.map": "/my-daily-journey/static/js/3.90defdce.chunk.js.map",
+    "main.css": "/my-daily-journey/static/css/main.2ae47eeb.chunk.css",
+    "main.js": "/my-daily-journey/static/js/main.b76e32dc.chunk.js",
+    "main.js.map": "/my-daily-journey/static/js/main.b76e32dc.chunk.js.map",
+    "runtime-main.js": "/my-daily-journey/static/js/runtime-main.5938afc9.js",
+    "runtime-main.js.map": "/my-daily-journey/static/js/runtime-main.5938afc9.js.map",
+    "static/js/2.11655d93.chunk.js": "/my-daily-journey/static/js/2.11655d93.chunk.js",
+    "static/js/2.11655d93.chunk.js.map": "/my-daily-journey/static/js/2.11655d93.chunk.js.map",
+    "static/js/3.746fd3da.chunk.js": "/my-daily-journey/static/js/3.746fd3da.chunk.js",
+    "static/js/3.746fd3da.chunk.js.map": "/my-daily-journey/static/js/3.746fd3da.chunk.js.map",
     "index.html": "/my-daily-journey/index.html",
-    "static/css/main.6dea0f05.chunk.css.map": "/my-daily-journey/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.7f94c630.chunk.js.LICENSE.txt": "/my-daily-journey/static/js/2.7f94c630.chunk.js.LICENSE.txt",
-    "static/media/about.4cee938e.svg": "/my-daily-journey/static/media/about.4cee938e.svg",
+    "static/css/main.2ae47eeb.chunk.css.map": "/my-daily-journey/static/css/main.2ae47eeb.chunk.css.map",
+    "static/js/2.11655d93.chunk.js.LICENSE.txt": "/my-daily-journey/static/js/2.11655d93.chunk.js.LICENSE.txt",
+    "static/media/about.fd8ca021.svg": "/my-daily-journey/static/media/about.fd8ca021.svg",
     "static/media/background.af9475f7.png": "/my-daily-journey/static/media/background.af9475f7.png",
-    "static/media/logo.479401e5.svg": "/my-daily-journey/static/media/logo.479401e5.svg"
+    "static/media/homeBuilding.7df47127.svg": "/my-daily-journey/static/media/homeBuilding.7df47127.svg",
+    "static/media/logo.97b44dbb.svg": "/my-daily-journey/static/media/logo.97b44dbb.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.38b51c6a.js",
-    "static/js/2.7f94c630.chunk.js",
-    "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.6c868c69.chunk.js"
+    "static/js/runtime-main.5938afc9.js",
+    "static/js/2.11655d93.chunk.js",
+    "static/css/main.2ae47eeb.chunk.css",
+    "static/js/main.b76e32dc.chunk.js"
   ]
 }
