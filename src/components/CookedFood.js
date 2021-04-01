@@ -4,7 +4,6 @@ import React from 'react';
 import DividerStyled from './DividerStyled';
 import ParagraphStyled from './ParagraphStyled';
 import Header from './Header';
-import Subheader from './Subheader';
 import Footer from './Footer';
 
 import { Link } from 'react-router-dom';
@@ -31,13 +30,6 @@ const CookedFood = () => {
                 </ParagraphStyled>               
                 {/* paragraph 2 */}
 
-
-                {/* page subtitle 1 */}
-                <Subheader title>
-                    Carbohydrates
-                </Subheader>
-                {/* page subtitle 1 */}
-
                 {/* paragraph 4 */}            
                 <ParagraphStyled paragraph>
                     Carbohydrates entries
@@ -47,9 +39,6 @@ const CookedFood = () => {
 
             <DividerStyled>
                 {/* page subtitle 2 */}
-                <Subheader title>
-                    Protein
-                </Subheader>
                 {/* page subtitle 2 */}
 
                 {/* paragraph 6 */}

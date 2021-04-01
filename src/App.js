@@ -51,11 +51,23 @@ const GlobalStyle = createGlobalStyle`
 const App = () => {
   // encourageMessage
   const [ servings, setServings ] = useState({
+    // FDA recommends 4 servings daily
+    defaultFruits: 3,
     fruits: 0,
+    // FDA recommends 5 servings daily
+    defaultVeggies: 4,
     veggies: 0,
     carbohydrates: 0,
     proteins: 0
   })
+
+  const randomizeDefaultFruitServing = () => (
+    // new default range = (2, 6)
+    setServings( servings => ({
+      ...servings,
+      defaultFruits: 2 + Math.trunc((Math.random() * 5))
+    }))
+  )
 
   const addFruitServing1 = () => (
     setServings( servings => ({
@@ -78,6 +90,35 @@ const App = () => {
     }))
   )
 
+  const randomizeDefaultVeggieServing = () => (
+    // new default range = (3, 7)
+    setServings( servings => ({
+      ...servings,
+      defaultVeggies: 3 + Math.trunc((Math.random() * 5))
+    }))
+  )
+
+  const addVeggieServing1 = () => (
+    setServings( servings => ({
+      ...servings,
+      veggies: servings.veggies + 1
+    }))
+  )
+
+  const addVeggieServing2 = () => (
+    setServings( servings => ({
+      ...servings,
+      veggies: servings.veggies + 2
+    }))
+  )
+
+  const resetVeggieServing = () => (
+    setServings( servings => ({
+      ...servings,
+      veggies: 0
+    }))
+  )
+
   return (
     <>
       <GlobalStyle />
@@ -97,7 +138,7 @@ const App = () => {
 
 
         {/* middle-div: sidebar (left) & main display (right) */}
-        <DividerStyled parallel>
+        <DividerStyled comparison>
 
           {/* side bar */}
           <DividerStyled>
@@ -172,9 +213,6 @@ const App = () => {
               <Route exact path='/'>
                 <Home 
                   myServings={ servings }
-                  myAddFruitServing1={ addFruitServing1 }
-                  myAddFruitServing2={ addFruitServing2 }
-                  myResetFruitServing={ resetFruitServing }
                   />
               </Route>          
 
@@ -184,6 +222,11 @@ const App = () => {
                   myAddFruitServing1={ addFruitServing1 }
                   myAddFruitServing2={ addFruitServing2 }
                   myResetFruitServing={ resetFruitServing }                
+                  myAddVeggieServing1={ addVeggieServing1 }
+                  myAddVeggieServing2={ addVeggieServing2 }
+                  myResetVeggieServing={ resetVeggieServing }                
+                  myRandomizeDefaultFruitServing={ randomizeDefaultFruitServing }
+                  myRandomizeDefaultVeggieServing={ randomizeDefaultVeggieServing }
                 />
               </Route>          
 

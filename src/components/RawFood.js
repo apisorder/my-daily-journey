@@ -2,106 +2,168 @@
 
 import React from 'react';
 import DividerStyled from './DividerStyled';
-import ParagraphStyled from './ParagraphStyled';
-import Header from './Header';
-import Subheader from './Subheader';
-import Footer from './Footer';
-import ImageStyled from './ImageStyled';
 import ButtonStyled from './ButtonStyled';
+import ImageStyled from './ImageStyled';
 
-import Exampler from './Exampler';
+import One from '../images/One.png';
+import Two from '../images/Two.png';
+import Three from '../images/Three.png';
+import 'pure-react-carousel/dist/react-carousel.es.css';
 
-import { Link } from 'react-router-dom';
 
-const RawFood = ({ myServings, myAddFruitServing1, myAddFruitServing2, myResetFruitServing }) => {
+import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
+
+const RawFood = ({ 
+    myServings, 
+    myAddFruitServing1, 
+    myAddFruitServing2, 
+    myResetFruitServing, 
+    myAddVeggieServing1, 
+    myAddVeggieServing2, 
+    myResetVeggieServing, 
+    myRandomizeDefaultFruitServing,
+    myRandomizeDefaultVeggieServing
+}) => {
     return (
         <>
             <DividerStyled>
-                {/* page title */}
-                <Header title>
-                    Raw Food
-                </Header>
-                {/* page title */}
-
-                {/* paragraph 1 */}
-                <ParagraphStyled paragraph>
-                    caousel here?
-                </ParagraphStyled>
-                {/* paragraph 1 */}
-
-                {/* paragraph 2 */}
-                <ParagraphStyled paragraph>
-                    caousel here also?
-                </ParagraphStyled>               
-                {/* paragraph 2 */}
-
-
-                {/* page subtitle 1 */}
-                <Subheader title>
-                    Fruit
-                </Subheader>
-                {/* page subtitle 1 */}
-
-                {/* paragraph 4 */}            
-                <ParagraphStyled paragraph>
-                    Fruit entries
-                </ParagraphStyled>               
-                {/* paragraph 4 */}
-            </DividerStyled>
-
-            <DividerStyled parallel2>
-                {/* <DividerStyled> */}
-                    <ButtonStyled narrow>
-                        Satisfied:
+                    <ButtonStyled category>
+                        fruits
                     </ButtonStyled>
-                    <ButtonStyled narrow>
-                        { myServings.fruits }
+
+                    <ButtonStyled secondary>
+                        Default: { myServings.defaultFruits }                        
                     </ButtonStyled>
-                {/* </DividerStyled> */}
-                {/* <DividerStyled> */}
-                    <ButtonStyled 
-                        narrow2
-                        onClick={ myAddFruitServing1 }>
-                        serving +1        
-                    </ButtonStyled>
-                {/* </DividerStyled> */}
-                {/* <DividerStyled> */}
-                    <ButtonStyled 
-                        narrow2
-                        onClick={ myAddFruitServing2 }>
-                        serving +2
+
+                    <ButtonStyled secondary>
+                        Intake: { myServings.fruits }                        
                     </ButtonStyled>
 
                     <ButtonStyled 
-                        narrow
-                        onClick={ myResetFruitServing }>
-                        reset
+                        secondary>
+                        {/* if already met the requirement, display 0 */}
+                        Remain: { 
+                            (myServings.defaultFruits - myServings.fruits) < 0 
+                            ? 0 
+                            : (myServings.defaultFruits - myServings.fruits) 
+                            }
+
                     </ButtonStyled>
-                {/* </DividerStyled> */}
+
+                    <ButtonStyled 
+                        primary
+                        onClick={ myAddFruitServing1 }
+                    >
+                        Intake +1        
+                    </ButtonStyled>
+
+                    <ButtonStyled 
+                        primary
+                        onClick={ myAddFruitServing2 }
+                    >
+                        Intake +2
+                    </ButtonStyled>
+
+                    <ButtonStyled 
+                        emergency
+                        onClick={ myResetFruitServing }
+                    >
+                        Intake Reset
+                    </ButtonStyled>
+
+                    <ButtonStyled 
+                        onClick={ myRandomizeDefaultFruitServing }
+                    >
+                        Random Default
+                    </ButtonStyled>
+
             </DividerStyled>
 
             <DividerStyled>
-                {/* page subtitle 2 */}
-                <Subheader title>
-                    Veggie
-                </Subheader>
-                {/* page subtitle 2 */}
+                    <ButtonStyled category>
+                        veggies
+                    </ButtonStyled>
 
-                {/* paragraph 6 */}
-                <ParagraphStyled paragraph>
-                    Veggie Entries
-                </ParagraphStyled>               
-                {/* paragraph 6 */}
-            </DividerStyled>            
+                    <ButtonStyled secondary>
+                        Default: { myServings.defaultVeggies }
+                    </ButtonStyled>
 
-            <DividerStyled footer>
-                <Footer>
-                    <Link to='/'>&lArr; Home</Link>
-                </Footer>
+                    <ButtonStyled secondary>
+                        Intake: { myServings.veggies }                        
+                    </ButtonStyled>
 
-                <Footer>
-                    <Link to='/cooked-food'>CookedFood &rArr;</Link>
-                </Footer>
+                    <ButtonStyled 
+                        secondary>
+                        {/* if already met the requirement, display 0 */}
+                        Remain: { 
+                            (myServings.defaultVeggies - myServings.veggies) < 0 
+                            ? 0 
+                            : myServings.defaultVeggies - myServings.veggies }
+                    </ButtonStyled>
+
+                    <ButtonStyled 
+                        primary
+                        onClick={ myAddVeggieServing1 }
+                    >
+                        Intake +1        
+                    </ButtonStyled>
+
+                    <ButtonStyled 
+                        primary
+                        onClick={ myAddVeggieServing2 }
+                    >
+                        Intake +2
+                    </ButtonStyled>
+
+                    <ButtonStyled 
+                        emergency
+                        onClick={ myResetVeggieServing }
+                    >
+                        Intake Reset
+                    </ButtonStyled>
+
+                    <ButtonStyled 
+                        onClick={ myRandomizeDefaultVeggieServing }
+                    >
+                        Random Default
+                    </ButtonStyled>
+
+            </DividerStyled>
+
+            <DividerStyled>
+
+    {/* react carousel library */}
+                <CarouselProvider
+                    naturalSlideWidth={ 600 }
+                    naturalSlideHeight={ 700 }
+                    totalSlides={3}
+                    isPlaying={ true }
+                    infinite={ true }
+                >
+
+                    <Slider>
+                        <Slide index={0}>
+                            <DividerStyled>
+                                <ImageStyled src={One} alt='whatever'/>
+                            </DividerStyled>
+                        </Slide>
+
+                        <Slide index={1}>
+                            <DividerStyled>
+                                <ImageStyled src={Two} alt='whatever'/>
+                            </DividerStyled>
+                        </Slide>
+
+                        <Slide index={2}>
+                            <DividerStyled>
+                                <ImageStyled src={Three} alt='whatever'/>
+                            </DividerStyled>
+                        </Slide>
+                    </Slider>
+
+                </CarouselProvider>
+    {/* react carousel library */}                
+
             </DividerStyled>
         </>
     )

@@ -12,26 +12,29 @@ const ButtonStyled = styled.a`
   color: MidnightBlue;
   background: Thistle;
 
-  ${props => props.narrow && css`
-    font-size: 29px;
-    display: inline-block;
-    border-radius: 3px;
-  
-    margin: 2rem 2rem;
-    border: 7px solid white;
-    color: MidnightBlue;
-    background: Lavender;
+  ${props => props.category && css`
+    font-size: 40px;  
+    text-transform: uppercase;
+    background: LightBlue;
+    `}
+
+  ${props => props.primary && css`
+    font-size: 32px;  
+    margin: 0rem 2rem;
+    background: Plum;
+    `}
+
+  ${props => props.secondary && css`
+    font-size: 35px;  
+    margin: 0rem 2rem;
+    background: LightGrey;
   `}
 
-  ${props => props.narrow2 && css`
-    font-size: 29px;
-    display: inline-block;
-    border-radius: 3px;
-  
-    margin: 2rem 2rem;
-    border: 7px solid white;
-    color: MidnightBlue;
-    background: Plum;
+  ${props => props.emergency && css`
+    font-size: 25px; 
+    margin: 0rem 2rem;
+    background: Lavender;
+    text-transform: uppercase;
     `}
 
   ${props => props.silver && css`
