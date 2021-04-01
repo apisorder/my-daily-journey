@@ -34,7 +34,7 @@ const ButtonStyled = styled.a`
     background: Plum;
     `}
 
-  ${props => props.popout && css`
+  ${props => props.silver && css`
     background: Silver;
   `}
 

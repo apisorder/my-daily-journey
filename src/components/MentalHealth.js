@@ -6,9 +6,6 @@ import ParagraphStyled from './ParagraphStyled';
 import Header from './Header';
 import Subheader from './Subheader';
 import Footer from './Footer';
-import ImageStyled from './ImageStyled';
-
-import Exampler from './Exampler';
 
 import { Link } from 'react-router-dom';
 

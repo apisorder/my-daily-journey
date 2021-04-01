@@ -106,7 +106,7 @@ const App = () => {
 
               <ListItemStyled>
                 <Link to="/">
-                  <ButtonStyled popout>
+                  <ButtonStyled silver>
                     Home
                   </ButtonStyled>
                 </Link>
@@ -122,7 +122,7 @@ const App = () => {
 
               <ListItemStyled>
                 <Link to="/cooked-food">
-                  <ButtonStyled popout>
+                  <ButtonStyled silver>
                   Cooked Food
                   </ButtonStyled>
                 </Link>
@@ -138,7 +138,7 @@ const App = () => {
 
               <ListItemStyled>
                 <Link to="/spiritual-health">
-                  <ButtonStyled popout>
+                  <ButtonStyled silver>
                   Spiritual Health
                   </ButtonStyled>
                 </Link>
@@ -154,7 +154,7 @@ const App = () => {
 
               <ListItemStyled>
                 <Link to="/summary">
-                  <ButtonStyled popout>
+                  <ButtonStyled silver>
                     Summary
                   </ButtonStyled>
                 </Link>
