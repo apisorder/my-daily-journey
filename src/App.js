@@ -57,11 +57,17 @@ const App = () => {
     // FDA recommends 5 servings daily
     defaultVeggies: 4,
     veggies: 0,
+    // 6-11 servings on average, based on research; default to 8
+    defaultCarbohydrates: 8,
     carbohydrates: 0,
+    // 4-6 servings on average, based on research; default to 5
+    defaultProteins: 5,
     proteins: 0
   })
 
+  // fruit functions
   const randomizeDefaultFruitServing = () => (
+    // original default is 3
     // new default range = (2, 6)
     setServings( servings => ({
       ...servings,
@@ -89,8 +95,11 @@ const App = () => {
       fruits: 0
     }))
   )
+  // fruit functions
 
+  // veggie functions
   const randomizeDefaultVeggieServing = () => (
+    // original default is 4
     // new default range = (3, 7)
     setServings( servings => ({
       ...servings,
@@ -118,6 +127,39 @@ const App = () => {
       veggies: 0
     }))
   )
+  // veggie functions
+
+  // carbohydrate functions
+  const randomizeDefaultCarbohydrateServing = () => (
+    // original default is 8
+    // new default range = (7, 11)
+    setServings( servings => ({
+      ...servings,
+      defaultCarbohydrates: 7 + Math.trunc((Math.random() * 5))
+    }))
+  )
+
+  const addCarbohydrateServing1 = () => (
+    setServings( servings => ({
+      ...servings,
+      carbohydrates: servings.carbohydrates + 1
+    }))
+  )
+
+  const addCarbohydrateServing2 = () => (
+    setServings( servings => ({
+      ...servings,
+      carbohydrates: servings.carbohydrates + 2
+    }))
+  )
+
+  const resetCarbohydrateServing = () => (
+    setServings( servings => ({
+      ...servings,
+      carbohydrates: 0
+    }))
+  )
+  // carbohydrate functions
 
   return (
     <>
