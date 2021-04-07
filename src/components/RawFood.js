@@ -18,10 +18,10 @@ const RawFood = ({
     myAddFruitServing1, 
     myAddFruitServing2, 
     myResetFruitServing, 
+    myRandomizeDefaultFruitServing,    
     myAddVeggieServing1, 
     myAddVeggieServing2, 
     myResetVeggieServing, 
-    myRandomizeDefaultFruitServing,
     myRandomizeDefaultVeggieServing
 }) => {
     return (

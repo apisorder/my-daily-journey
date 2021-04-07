@@ -161,6 +161,38 @@ const App = () => {
   )
   // carbohydrate functions
 
+  // protein functions
+  const randomizeDefaultProteinServing = () => (
+    // original default is 5
+    // new default range = (4, 8)
+    setServings( servings => ({
+      ...servings,
+      defaultProteins: 4 + Math.trunc((Math.random() * 5))
+    }))
+  )
+
+  const addProteinServing1 = () => (
+    setServings( servings => ({
+      ...servings,
+      proteins: servings.proteins + 1
+    }))
+  )
+
+  const addProteinServing2 = () => (
+    setServings( servings => ({
+      ...servings,
+      proteins: servings.proteins + 2
+    }))
+  )
+
+  const resetProteinServing = () => (
+    setServings( servings => ({
+      ...servings,
+      proteins: 0
+    }))
+  )
+  // protein functions
+
   return (
     <>
       <GlobalStyle />
@@ -261,19 +293,33 @@ const App = () => {
               <Route exact path='/raw-food'>
                 <RawFood 
                   myServings={ servings }
+
                   myAddFruitServing1={ addFruitServing1 }
                   myAddFruitServing2={ addFruitServing2 }
                   myResetFruitServing={ resetFruitServing }                
+                  myRandomizeDefaultFruitServing={ randomizeDefaultFruitServing }                  
+                  
                   myAddVeggieServing1={ addVeggieServing1 }
                   myAddVeggieServing2={ addVeggieServing2 }
                   myResetVeggieServing={ resetVeggieServing }                
-                  myRandomizeDefaultFruitServing={ randomizeDefaultFruitServing }
                   myRandomizeDefaultVeggieServing={ randomizeDefaultVeggieServing }
                 />
               </Route>          
 
               <Route exact path='/cooked-food'>
-                <CookedFood />
+                <CookedFood 
+                  myServings={ servings }
+
+                  myAddCarbohydrateServing1={ addCarbohydrateServing1 }
+                  myAddCarbohydrateServing2={ addCarbohydrateServing2 }
+                  myResetCarbohydrateServing={ resetCarbohydrateServing }                
+                  myRandomizeDefaultCarbohydrateServing={ randomizeDefaultCarbohydrateServing }                  
+
+                  myAddProteinServing1={ addProteinServing1 }
+                  myAddProteinServing2={ addProteinServing2 }
+                  myResetProteinServing={ resetProteinServing }                
+                  myRandomizeDefaultProteinServing={ randomizeDefaultProteinServing }                
+                />
               </Route>          
 
               <Route exact path='/mental-health'>

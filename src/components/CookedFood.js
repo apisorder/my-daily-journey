@@ -15,64 +15,64 @@ import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
 
 const CookedFood = ({ 
     myServings, 
-    myAddFruitServing1, 
-    myAddFruitServing2, 
-    myResetFruitServing, 
-    myAddVeggieServing1, 
-    myAddVeggieServing2, 
-    myResetVeggieServing, 
-    myRandomizeDefaultFruitServing,
-    myRandomizeDefaultVeggieServing
+    myAddCarbohydrateServing1, 
+    myAddCarbohydrateServing2, 
+    myResetCarbohydrateServing, 
+    myRandomizeDefaultCarbohydrateServing,    
+    myAddProteinServing1, 
+    myAddProteinServing2, 
+    myResetProteinServing, 
+    myRandomizeDefaultProteinServing
 }) => {
     return (
         <>
             <DividerStyled>
                     <ButtonStyled category>
-                        fruits
+                        carbs
                     </ButtonStyled>
 
                     <ButtonStyled secondary>
-                        Default: { myServings.defaultFruits }                        
+                        Default: { myServings.defaultCarbohydrates }                        
                     </ButtonStyled>
 
                     <ButtonStyled secondary>
-                        Intake: { myServings.fruits }                        
+                        Intake: { myServings.carbohydrates }                        
                     </ButtonStyled>
 
                     <ButtonStyled 
                         secondary>
                         {/* if already met the requirement, display 0 */}
                         Remain: { 
-                            (myServings.defaultFruits - myServings.fruits) < 0 
+                            (myServings.defaultCarbohydrates - myServings.carbohydrates) < 0 
                             ? 0 
-                            : (myServings.defaultFruits - myServings.fruits) 
+                            : (myServings.defaultCarbohydrates - myServings.carbohydrates) 
                             }
 
                     </ButtonStyled>
 
                     <ButtonStyled 
                         primary
-                        onClick={ myAddFruitServing1 }
+                        onClick={ myAddCarbohydrateServing1 }
                     >
                         Intake +1        
                     </ButtonStyled>
 
                     <ButtonStyled 
                         primary
-                        onClick={ myAddFruitServing2 }
+                        onClick={ myAddCarbohydrateServing2 }
                     >
                         Intake +2
                     </ButtonStyled>
 
                     <ButtonStyled 
                         emergency
-                        onClick={ myResetFruitServing }
+                        onClick={ myResetCarbohydrateServing }
                     >
                         Intake Reset
                     </ButtonStyled>
 
                     <ButtonStyled 
-                        onClick={ myRandomizeDefaultFruitServing }
+                        onClick={ myRandomizeDefaultCarbohydrateServing }
                     >
                         Random Default
                     </ButtonStyled>
@@ -81,49 +81,49 @@ const CookedFood = ({
 
             <DividerStyled>
                     <ButtonStyled category>
-                        veggies
+                        proteins
                     </ButtonStyled>
 
                     <ButtonStyled secondary>
-                        Default: { myServings.defaultVeggies }
+                        Default: { myServings.defaultProteins }
                     </ButtonStyled>
 
                     <ButtonStyled secondary>
-                        Intake: { myServings.veggies }                        
+                        Intake: { myServings.proteins }                        
                     </ButtonStyled>
 
                     <ButtonStyled 
                         secondary>
                         {/* if already met the requirement, display 0 */}
                         Remain: { 
-                            (myServings.defaultVeggies - myServings.veggies) < 0 
+                            (myServings.defaultProteins - myServings.proteins) < 0 
                             ? 0 
-                            : myServings.defaultVeggies - myServings.veggies }
+                            : myServings.defaultProteins - myServings.proteins }
                     </ButtonStyled>
 
                     <ButtonStyled 
                         primary
-                        onClick={ myAddVeggieServing1 }
+                        onClick={ myAddProteinServing1 }
                     >
                         Intake +1        
                     </ButtonStyled>
 
                     <ButtonStyled 
                         primary
-                        onClick={ myAddVeggieServing2 }
+                        onClick={ myAddProteinServing2 }
                     >
                         Intake +2
                     </ButtonStyled>
 
                     <ButtonStyled 
                         emergency
-                        onClick={ myResetVeggieServing }
+                        onClick={ myResetProteinServing }
                     >
                         Intake Reset
                     </ButtonStyled>
 
                     <ButtonStyled 
-                        onClick={ myRandomizeDefaultVeggieServing }
+                        onClick={ myRandomizeDefaultProteinServing }
                     >
                         Random Default
                     </ButtonStyled>
