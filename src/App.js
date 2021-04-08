@@ -28,8 +28,10 @@ import ButtonStyled from './components/ButtonStyled';
 
 // components for each individual route
 import Home from './components/Home';
-import RawFood from './components/RawFood';
-import CookedFood from './components/CookedFood';
+import Fruit from './components/Fruit';
+import Veggie from './components/Veggie';
+import Carbohydrate from './components/Carbohydrate';
+import Protein from './components/Protein';
 import MentalHealth from './components/MentalHealth';
 import SpiritualHealth from './components/SpiritualHealth';
 import Reference from './components/Reference';
@@ -218,7 +220,6 @@ const App = () => {
           <DividerStyled>
             
             <UnorderedListStyled sidebar>
-
               <ListItemStyled>
                 <Link to="/">
                   <ButtonStyled silver>
@@ -228,17 +229,33 @@ const App = () => {
               </ListItemStyled>
 
               <ListItemStyled>
-                <Link to="/raw-food">
+                <Link to="/fruit">
                   <ButtonStyled>
-                    Raw Food
+                    Fruit
                   </ButtonStyled>
                 </Link>
               </ListItemStyled>
 
               <ListItemStyled>
-                <Link to="/cooked-food">
+                <Link to="/veggie">
                   <ButtonStyled silver>
-                  Cooked Food
+                    Veggie
+                  </ButtonStyled>
+                </Link>
+              </ListItemStyled>
+
+              <ListItemStyled>
+                <Link to="/carbohydrate">
+                  <ButtonStyled>
+                    Carbohydrate
+                  </ButtonStyled>
+                </Link>
+              </ListItemStyled>
+
+              <ListItemStyled>
+                <Link to="/protein">
+                  <ButtonStyled silver>
+                    Protein
                   </ButtonStyled>
                 </Link>
               </ListItemStyled>
@@ -290,15 +307,20 @@ const App = () => {
                   />
               </Route>          
 
-              <Route exact path='/raw-food'>
-                <RawFood 
+              <Route exact path='/fruit'>
+                <Fruit 
                   myServings={ servings }
 
                   myAddFruitServing1={ addFruitServing1 }
                   myAddFruitServing2={ addFruitServing2 }
                   myResetFruitServing={ resetFruitServing }                
-                  myRandomizeDefaultFruitServing={ randomizeDefaultFruitServing }                  
-                  
+                  myRandomizeDefaultFruitServing={ randomizeDefaultFruitServing }                                    
+                />
+              </Route>          
+
+              <Route exact path='/veggie'>
+                <Veggie 
+                  myServings={ servings }
                   myAddVeggieServing1={ addVeggieServing1 }
                   myAddVeggieServing2={ addVeggieServing2 }
                   myResetVeggieServing={ resetVeggieServing }                
@@ -306,15 +328,19 @@ const App = () => {
                 />
               </Route>          
 
-              <Route exact path='/cooked-food'>
-                <CookedFood 
+              <Route exact path='/carbohydrate'>
+                <Carbohydrate 
                   myServings={ servings }
-
                   myAddCarbohydrateServing1={ addCarbohydrateServing1 }
                   myAddCarbohydrateServing2={ addCarbohydrateServing2 }
                   myResetCarbohydrateServing={ resetCarbohydrateServing }                
                   myRandomizeDefaultCarbohydrateServing={ randomizeDefaultCarbohydrateServing }                  
+                />
+              </Route>          
 
+              <Route exact path='/protein'>
+                <Protein 
+                  myServings={ servings }
                   myAddProteinServing1={ addProteinServing1 }
                   myAddProteinServing2={ addProteinServing2 }
                   myResetProteinServing={ resetProteinServing }                
