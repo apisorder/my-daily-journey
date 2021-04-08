@@ -67,6 +67,21 @@ const App = () => {
     proteins: 0
   })
 
+  const [ reminder, setReminder ] = useState(
+    defaultReminder: 'All is well.',
+    reminderBank: [
+      'Worst case scenario: how would this affect me 30 years from now? -- Jeff',
+      'We are all doing the best we can -- Jacquline',
+      'Lowever your expecations, then lower them some more -- Dottie'
+  ])
+
+  const randomizeDefaultReminder = () => {
+    setReminder( reminders => ({
+        ...reminders,
+        defaultReminder: reminderBank[0 + Math.trunc((Math.random() * 5))]
+    }))
+  }
+
   // fruit functions
   const randomizeDefaultFruitServing = () => (
     // original default is 3
@@ -304,6 +319,7 @@ const App = () => {
               <Route exact path='/'>
                 <Home 
                   myServings={ servings }
+                  myRandomizeDefaultReminder={ randomizeDefaultReminder }
                   />
               </Route>          
 
