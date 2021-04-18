@@ -1,67 +1,125 @@
 
 
-import React from 'react';
+// these are styled components used with React, essentially localized CSS-styled React components
+import React, { useState } from 'react';
 import DividerStyled from './DividerStyled';
-import ParagraphStyled from './ParagraphStyled';
-import Header from './Header';
-import Footer from './Footer';
+import ButtonStyled from './ButtonStyled';
+import ImageStyled from './ImageStyled';
 
-import { Link } from 'react-router-dom';
+import SpirtualHealthOne from '../images/SpiritualHealthOne.png';
+import SpiritualHealthTwo from '../images/SpiritualHealthTwo.png';
 
-const SpiritualHealth = () => {
+// most React state is stored in App.js, and passed in via props, which has been destructured for faster access
+// extract relevant information from App component's state
+// local state is used to control whether to show the reminder images or Notification, and to toggle the control
+// the supported functionalities are adding 1, 2, or 3 servings consumed, and calculates the result based on the default serving size
+// additionally, resetting default serving size and servings consumed are also supported
+const SpirtualHealth = ({ 
+    myServings, 
+    myAddPresentLivingServing1, 
+    myAddPresentLivingServing2, 
+    myAddPresentLivingServing3, 
+    myResetPresentLivingServing, 
+    myRandomizeDefaultPresentLivingServing,    
+}) => {
+
+    const [ showReminder, setShowReminder ] = useState( true );
+    const toggleReminder = () => (
+        setShowReminder( showReminder => ! showReminder )
+    )
+
     return (
         <>
             <DividerStyled>
-                {/* page title */}
-                <Header title>
-                    Spiritual Health
-                </Header>
-                {/* page title */}
+                    <ButtonStyled categoryed>
+                        🔥💬🩹 Here and Now
+                    </ButtonStyled>
 
-                {/* paragraph 1 */}
-                <ParagraphStyled paragraph>
-                    caousel here?
-                </ParagraphStyled>
-                {/* paragraph 1 */}
+                    <ButtonStyled defaulted>
+                        needed: { myServings.defaultPresentLivings }                        
+                    </ButtonStyled>
 
-                {/* paragraph 2 */}
-                <ParagraphStyled paragraph>
-                    caousel here also?
-                </ParagraphStyled>               
-                {/* paragraph 2 */}
+                    <ButtonStyled consumed>
+                        consumed: { myServings.presentLivings }                        
+                    </ButtonStyled>
 
+                    <ButtonStyled remained>
+                        {/* if already met the requirement, display 0 */}
+                        remaining: { 
+                            (myServings.defaultPresentLivings - myServings.presentLivings) < 0 
+                            ? 0 
+                            : (myServings.defaultPresentLivings - myServings.presentLivings) 
+                            }
 
-                {/* page subtitle 1 */}
-                {/* page subtitle 1 */}
+                    </ButtonStyled>
 
-                {/* paragraph 4 */}            
-                <ParagraphStyled paragraph>
-                    Fruit entries
-                </ParagraphStyled>               
-                {/* paragraph 4 */}
+                    <ButtonStyled added 
+                        onClick={ myAddPresentLivingServing1 }
+                    >
+                        +1 🔥       
+                    </ButtonStyled>
+
+                    <ButtonStyled added
+                        onClick={ myAddPresentLivingServing2 }
+                    >
+                        +2 🔥💬
+                    </ButtonStyled>
+
+                    <ButtonStyled added
+                        onClick={ myAddPresentLivingServing3 }
+                    >
+                        +3🔥💬🩹
+                    </ButtonStyled>
+
+                    <ButtonStyled resetDefaulted
+                        onClick={ myRandomizeDefaultPresentLivingServing }
+                    >
+                        needed 🔃
+                    </ButtonStyled>
+
+                    <ButtonStyled resetConsumed
+                        onClick={ myResetPresentLivingServing }
+                    >
+                        consumed 🔃
+                    </ButtonStyled>
+
+                    { showReminder &&
+                        <ButtonStyled
+                            onClick={ toggleReminder }>
+                            🎗️ Show Reminder
+                        </ButtonStyled>
+                    }
+
             </DividerStyled>
+            {/* <DividerStyled> */}
 
-            <DividerStyled>
-                {/* page subtitle 2 */}
-                {/* page subtitle 2 */}
+            {
+                !showReminder &&
+                <DividerStyled comparison>
+                    <DividerStyled>
+                        <ImageStyled 
+                            src={ SpirtualHealthOne } 
+                            alt='Spirtual Health One'
+                        />
+                    </DividerStyled>
 
-                {/* paragraph 6 */}
-                <ParagraphStyled paragraph>
-                    Veggie Entries
-                </ParagraphStyled>               
-                {/* paragraph 6 */}
-            </DividerStyled>            
+                    <DividerStyled>
+                        <ImageStyled 
+                            src={ SpiritualHealthTwo } 
+                            alt='Spiritual Health Two'
+                        />
+                    </DividerStyled>
+                </DividerStyled>                
+            }
 
-            <DividerStyled footer>
-                <Footer>
-                    <Link to='/mental-health'>&lArr; Mental Health</Link>
-                </Footer>
-
-                <Footer>
-                    <Link to='/reference'>Reference &rArr;</Link>
-                </Footer>
-            </DividerStyled>
+            {
+                !showReminder &&
+                <ButtonStyled
+                        onClick={ toggleReminder }>
+                        Hide Reminder
+                </ButtonStyled>
+            }
         </>
     )
 }
-export default SpiritualHealth;
+export default SpirtualHealth;

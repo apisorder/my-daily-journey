@@ -13,7 +13,7 @@ ${props => props.mainImage && css`
 
 ${props => props.comparison && css`
     display: flex;
-    padding: 2rem 10rem 2rem 10rem;
+    padding: 2rem 10rem 2rem 0rem;
 `}
 
 ${props => props.bottomNavigation && css`

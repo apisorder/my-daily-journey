@@ -1,108 +1,125 @@
 
 
-import React from 'react';
+// these are styled components used with React, essentially localized CSS-styled React components
+import React, { useState } from 'react';
 import DividerStyled from './DividerStyled';
 import ButtonStyled from './ButtonStyled';
 import ImageStyled from './ImageStyled';
 
-import One from '../images/One.png';
-import Two from '../images/Two.png';
-import Three from '../images/Three.png';
-import 'pure-react-carousel/dist/react-carousel.es.css';
+import ProteinOne from '../images/ProteinOne.png';
+import ProteinTwo from '../images/ProteinTwo.png';
 
-
-import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
-
+// most React state is stored in App.js, and passed in via props, which has been destructured for faster access
+// extract relevant information from App component's state
+// local state is used to control whether to show the reminder images or Notification, and to toggle the control
+// the supported functionalities are adding 1, 2, or 3 servings consumed, and calculates the result based on the default serving size
+// additionally, resetting default serving size and servings consumed are also supported
 const Protein = ({ 
     myServings, 
     myAddProteinServing1, 
     myAddProteinServing2, 
+    myAddProteinServing3, 
     myResetProteinServing, 
-    myRandomizeDefaultProteinServing
+    myRandomizeDefaultProteinServing,    
 }) => {
+
+    const [ showReminder, setShowReminder ] = useState( true );
+    const toggleReminder = () => (
+        setShowReminder( showReminder => ! showReminder )
+    )
+
     return (
         <>
             <DividerStyled>
-                    <ButtonStyled category>
-                        proteins
+                    <ButtonStyled categoryed>
+                        🍤🥚🧀 proteins
                     </ButtonStyled>
 
-                    <ButtonStyled secondary>
-                        Default: { myServings.defaultProteins }
+                    <ButtonStyled defaulted>
+                        needed: { myServings.defaultProteins }                        
                     </ButtonStyled>
 
-                    <ButtonStyled secondary>
-                        Intake: { myServings.proteins }                        
+                    <ButtonStyled consumed>
+                        consumed: { myServings.proteins }                        
                     </ButtonStyled>
 
-                    <ButtonStyled 
-                        secondary>
+                    <ButtonStyled remained>
                         {/* if already met the requirement, display 0 */}
-                        Remain: { 
+                        remaining: { 
                             (myServings.defaultProteins - myServings.proteins) < 0 
                             ? 0 
-                            : myServings.defaultProteins - myServings.proteins }
+                            : (myServings.defaultProteins - myServings.proteins) 
+                            }
+
                     </ButtonStyled>
 
-                    <ButtonStyled 
-                        primary
+                    <ButtonStyled added 
                         onClick={ myAddProteinServing1 }
                     >
-                        Intake +1        
+                        +1 🍤
                     </ButtonStyled>
 
-                    <ButtonStyled 
-                        primary
+                    <ButtonStyled added
                         onClick={ myAddProteinServing2 }
                     >
-                        Intake +2
+                        +2 🍤🥚
                     </ButtonStyled>
 
-                    <ButtonStyled 
-                        emergency
-                        onClick={ myResetProteinServing }
+                    <ButtonStyled added
+                        onClick={ myAddProteinServing3 }
                     >
-                        Intake Reset
+                        +3🍤🥚🧀
                     </ButtonStyled>
 
-                    <ButtonStyled 
+                    <ButtonStyled resetDefaulted
                         onClick={ myRandomizeDefaultProteinServing }
                     >
-                        Random Default
+                        needed 🔃
                     </ButtonStyled>
+
+                    <ButtonStyled resetConsumed
+                        onClick={ myResetProteinServing }
+                    >
+                        consumed 🔃
+                    </ButtonStyled>
+
+                    { showReminder &&
+                        <ButtonStyled
+                            onClick={ toggleReminder }>
+                            🎗️ Show Reminder
+                        </ButtonStyled>
+                    }
+
             </DividerStyled>
+            {/* <DividerStyled> */}
 
-            {/* react carousel library */}
-            <CarouselProvider
-                naturalSlideWidth={ 600 }
-                naturalSlideHeight={ 700 }
-                totalSlides={3}
-                isPlaying={ true }
-                infinite={ true }
-            >
-
-            <Slider>
-                <Slide index={0}>
+            {
+                !showReminder &&
+                <DividerStyled comparison>
                     <DividerStyled>
-                        <ImageStyled src={One} alt='whatever'/>
+                        <ImageStyled 
+                            src={ ProteinOne } 
+                            alt='Protein One'
+                        />
                     </DividerStyled>
-                </Slide>
 
-                <Slide index={1}>
                     <DividerStyled>
-                        <ImageStyled src={Two} alt='whatever'/>
+                        <ImageStyled 
+                            src={ ProteinTwo } 
+                            alt='Protein Two'
+                        />
                     </DividerStyled>
-                </Slide>
+                </DividerStyled>                
+            }
 
-                <Slide index={2}>
-                    <DividerStyled>
-                        <ImageStyled src={Three} alt='whatever'/>
-                    </DividerStyled>
-                </Slide>
-            </Slider>
-        </CarouselProvider>
-        {/* react carousel library */}                
-    </>
+            {
+                !showReminder &&
+                <ButtonStyled
+                        onClick={ toggleReminder }>
+                        Hide Reminder
+                </ButtonStyled>
+            }
+        </>
     )
 }
 export default Protein;

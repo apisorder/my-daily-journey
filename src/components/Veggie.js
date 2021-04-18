@@ -1,108 +1,124 @@
 
 
-import React from 'react';
+// these are styled components used with React, essentially localized CSS-styled React components
+import React, { useState } from 'react';
 import DividerStyled from './DividerStyled';
 import ButtonStyled from './ButtonStyled';
 import ImageStyled from './ImageStyled';
-import Header from './Header';
 
-import One from '../images/One.png';
-import Two from '../images/Two.png';
-import Three from '../images/Three.png';
-// import 'pure-react-carousel/dist/react-carousel.es.css';
+import VeggieOne from '../images/VeggieOne.png';
+import VeggieTwo from '../images/VeggieTwo.png';
 
-import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
-
+// most React state is stored in App.js, and passed in via props, which has been destructured for faster access
+// extract relevant information from App component's state
+// local state is used to control whether to show the reminder images or Notification, and to toggle the control
+// the supported functionalities are adding 1, 2, or 3 servings consumed, and calculates the result based on the default serving size
+// additionally, resetting default serving size and servings consumed are also supported
 const Veggie = ({ 
     myServings, 
     myAddVeggieServing1, 
     myAddVeggieServing2, 
+    myAddVeggieServing3, 
     myResetVeggieServing, 
-    myRandomizeDefaultVeggieServing
+    myRandomizeDefaultVeggieServing,    
 }) => {
+
+    const [ showReminder, setShowReminder ] = useState( true );
+    const toggleReminder = () => (
+        setShowReminder( showReminder => ! showReminder )
+    )
+
     return (
         <>
             <DividerStyled>
-                    <ButtonStyled category>
-                        veggies
+                    <ButtonStyled categoryed>
+                        🍆🥦🍅 veggies
                     </ButtonStyled>
 
-                    <ButtonStyled secondary>
-                        Default: { myServings.defaultVeggies }
+                    <ButtonStyled defaulted>
+                        needed: { myServings.defaultVeggies }                        
                     </ButtonStyled>
 
-                    <ButtonStyled secondary>
-                        Intake: { myServings.veggies }                        
+                    <ButtonStyled consumed>
+                        consumed: { myServings.veggies }                        
                     </ButtonStyled>
 
-                    <ButtonStyled 
-                        secondary>
+                    <ButtonStyled remained>
                         {/* if already met the requirement, display 0 */}
-                        Remain: { 
+                        remaining: { 
                             (myServings.defaultVeggies - myServings.veggies) < 0 
                             ? 0 
-                            : myServings.defaultVeggies - myServings.veggies }
+                            : (myServings.defaultVeggies - myServings.veggies) 
+                            }
+
                     </ButtonStyled>
 
-                    <ButtonStyled 
-                        primary
+                    <ButtonStyled added 
                         onClick={ myAddVeggieServing1 }
                     >
-                        Intake +1        
+                        +1 🍆
                     </ButtonStyled>
 
-                    <ButtonStyled 
-                        primary
+                    <ButtonStyled added
                         onClick={ myAddVeggieServing2 }
                     >
-                        Intake +2
+                        +2 🍆🥦
                     </ButtonStyled>
 
-                    <ButtonStyled 
-                        emergency
-                        onClick={ myResetVeggieServing }
+                    <ButtonStyled added
+                        onClick={ myAddVeggieServing3 }
                     >
-                        Intake Reset
+                        +3🍆🥦🍅
                     </ButtonStyled>
 
-                    <ButtonStyled 
+                    <ButtonStyled resetDefaulted
                         onClick={ myRandomizeDefaultVeggieServing }
                     >
-                        Random Default
+                        needed 🔃
                     </ButtonStyled>
-            </DividerStyled>
 
+                    <ButtonStyled resetConsumed
+                        onClick={ myResetVeggieServing }
+                    >
+                        consumed 🔃
+                    </ButtonStyled>
+
+                    { showReminder &&
+                        <ButtonStyled
+                            onClick={ toggleReminder }>
+                            🎗️ Show Reminder
+                        </ButtonStyled>
+                    }
+
+            </DividerStyled>
             {/* <DividerStyled> */}
 
-            {/* react carousel library */}
-            <CarouselProvider
-                naturalSlideWidth={ 600 }
-                naturalSlideHeight={ 700 }
-                totalSlides={3}
-                isPlaying={ true }
-                infinite={ true }
-            >
+            {
+                !showReminder &&
+                <DividerStyled comparison>
+                    <DividerStyled>
+                        <ImageStyled 
+                            src={ VeggieOne } 
+                            alt='Veggie One'
+                        />
+                    </DividerStyled>
 
-                <Slider>
-                    <Slide index={0}>
-                        <DividerStyled>
-                            <ImageStyled src={One} alt='whatever'/>
-                        </DividerStyled>
-                    </Slide>
-                    <Slide index={1}>
-                        <DividerStyled>
-                            <ImageStyled src={Two} alt='whatever'/>
-                        </DividerStyled>
-                    </Slide>
+                    <DividerStyled>
+                        <ImageStyled 
+                            src={ VeggieTwo } 
+                            alt='Veggie Two'
+                        />
+                    </DividerStyled>
+                </DividerStyled>                
+            }
 
-                    <Slide index={2}>
-                        <DividerStyled>
-                            <ImageStyled src={Three} alt='whatever'/>
-                        </DividerStyled>
-                    </Slide>
-                </Slider>
-            </CarouselProvider>
-            {/* react carousel library */}                
+            {
+                !showReminder &&
+                <ButtonStyled
+                        onClick={ toggleReminder }>
+                        Hide Reminder
+                </ButtonStyled>
+            }
         </>
     )
 }

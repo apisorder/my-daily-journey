@@ -3,8 +3,8 @@
 import styled from 'styled-components';
 
 const ImageStyled = styled.img`
-  height: 700px;
-  width: 600x;
-  margin: 15px 10px 25px 30px;
+  height: 500px;
+  width: 500x;
+  margin: 0rem 1.5rem;
 `
 export default ImageStyled;

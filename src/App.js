@@ -20,7 +20,7 @@ import {ReactComponent as Logo} from './images/logo.svg';
 import Footer from './components/Footer';
 import {ReactComponent as About} from './images/about.svg';
 
-// components to add styles
+// these are styled components used with React, essentially localized CSS-styled React components
 import DividerStyled from './components/DividerStyled';
 import UnorderedListStyled from './components/UnorderedListStyled';
 import ListItemStyled from './components/ListItemStyled';
@@ -34,10 +34,9 @@ import Carbohydrate from './components/Carbohydrate';
 import Protein from './components/Protein';
 import MentalHealth from './components/MentalHealth';
 import SpiritualHealth from './components/SpiritualHealth';
-import Reference from './components/Reference';
 import Summary from './components/Summary';
 
-// global CSS
+// global CSS with styled components
 import { createGlobalStyle } from 'styled-components';
 import background from './images/background.png';
 const GlobalStyle = createGlobalStyle`
@@ -50,6 +49,10 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 // main
+// most React state is stored in App.js, and passed in via props to most routes,
+// where each component extracts relevant information from the passed props
+// the supported functionalities are adding 1, 2, or 3 servings consumed, and calculates the result based on the default serving size
+// additionally, resetting default serving size and servings consumed are also supported
 const App = () => {
   // encourageMessage
   const [ servings, setServings ] = useState({
@@ -64,23 +67,16 @@ const App = () => {
     carbohydrates: 0,
     // 4-6 servings on average, based on research; default to 5
     defaultProteins: 5,
-    proteins: 0
+    proteins: 0,
+
+    // number of 15-minute breaks
+    defaultTakeBreaks: 2,
+    takeBreaks: 0,
+
+    // number of times living at the present
+    defaultPresentLivings: 2,
+    presentLivings: 0,
   })
-
-  const [ reminder, setReminder ] = useState(
-    defaultReminder: 'All is well.',
-    reminderBank: [
-      'Worst case scenario: how would this affect me 30 years from now? -- Jeff',
-      'We are all doing the best we can -- Jacquline',
-      'Lowever your expecations, then lower them some more -- Dottie'
-  ])
-
-  const randomizeDefaultReminder = () => {
-    setReminder( reminders => ({
-        ...reminders,
-        defaultReminder: reminderBank[0 + Math.trunc((Math.random() * 5))]
-    }))
-  }
 
   // fruit functions
   const randomizeDefaultFruitServing = () => (
@@ -103,6 +99,13 @@ const App = () => {
     setServings( servings => ({
       ...servings,
       fruits: servings.fruits + 2
+    }))
+  )
+
+  const addFruitServing3 = () => (
+    setServings( servings => ({
+      ...servings,
+      fruits: servings.fruits + 3
     }))
   )
 
@@ -138,6 +141,13 @@ const App = () => {
     }))
   )
 
+  const addVeggieServing3 = () => (
+    setServings( servings => ({
+      ...servings,
+      veggies: servings.veggies + 3
+    }))
+  )
+
   const resetVeggieServing = () => (
     setServings( servings => ({
       ...servings,
@@ -167,6 +177,13 @@ const App = () => {
     setServings( servings => ({
       ...servings,
       carbohydrates: servings.carbohydrates + 2
+    }))
+  )
+
+  const addCarbohydrateServing3 = () => (
+    setServings( servings => ({
+      ...servings,
+      carbohydrates: servings.carbohydrates + 3
     }))
   )
 
@@ -202,6 +219,13 @@ const App = () => {
     }))
   )
 
+  const addProteinServing3 = () => (
+    setServings( servings => ({
+      ...servings,
+      proteins: servings.proteins + 3
+    }))
+  )
+
   const resetProteinServing = () => (
     setServings( servings => ({
       ...servings,
@@ -209,6 +233,84 @@ const App = () => {
     }))
   )
   // protein functions
+
+  // take break functions
+  const randomizeDefaultTakeBreakServing = () => (
+    // original default is 2
+    // new default range = (1, 3)
+    setServings( servings => ({
+      ...servings,
+      defaultTakeBreaks: 1 + Math.trunc((Math.random() * 3))
+    }))
+  )
+
+  const addTakeBreakServing1 = () => (
+    setServings( servings => ({
+      ...servings,
+      takeBreaks: servings.takeBreaks + 1
+    }))
+  )
+
+  const addTakeBreakServing2 = () => (
+    setServings( servings => ({
+      ...servings,
+      takeBreaks: servings.takeBreaks + 2
+    }))
+  )
+
+  const addTakeBreakServing3 = () => (
+    setServings( servings => ({
+      ...servings,
+      takeBreaks: servings.takeBreaks + 3
+    }))
+  )
+
+  const resetTakeBreakServing = () => (
+    setServings( servings => ({
+      ...servings,
+      takeBreaks: 0
+    }))
+  )
+  // take break functions
+
+  // present living functions
+  const randomizeDefaultPresentLivingServing = () => (
+    // original default is 2
+    // new default range = (1, 3)
+    setServings( servings => ({
+      ...servings,
+      defaultPresentLivings: 1 + Math.trunc((Math.random() * 3))
+    }))
+  )
+
+  const addPresentLivingServing1 = () => (
+    setServings( servings => ({
+      ...servings,
+      presentLivings: servings.presentLivings + 1
+    }))
+  )
+
+  const addPresentLivingServing2 = () => (
+    setServings( servings => ({
+      ...servings,
+      presentLivings: servings.presentLivings + 2
+    }))
+  )
+
+  const addPresentLivingServing3 = () => (
+    setServings( servings => ({
+      ...servings,
+      presentLivings: servings.presentLivings + 3
+    }))
+  )
+
+  const resetPresentLivingServing = () => (
+    setServings( servings => ({
+      ...servings,
+      presentLivings: 0
+    }))
+  )
+  // present living functions
 
   return (
     <>
@@ -292,21 +394,13 @@ const App = () => {
               </ListItemStyled>
 
               <ListItemStyled>
-                <Link to="/reference">
-                  <ButtonStyled>
-                    Reference
-                  </ButtonStyled>
-                </Link>
-              </ListItemStyled>
-
-              <ListItemStyled>
                 <Link to="/summary">
-                  <ButtonStyled silver>
+                  <ButtonStyled>
                     Summary
                   </ButtonStyled>
                 </Link>
               </ListItemStyled>
-              
+
             </UnorderedListStyled>
 
           </DividerStyled>         
@@ -318,8 +412,6 @@ const App = () => {
 
               <Route exact path='/'>
                 <Home 
-                  myServings={ servings }
-                  myRandomizeDefaultReminder={ randomizeDefaultReminder }
                   />
               </Route>          
 
@@ -329,6 +421,7 @@ const App = () => {
 
                   myAddFruitServing1={ addFruitServing1 }
                   myAddFruitServing2={ addFruitServing2 }
+                  myAddFruitServing3={ addFruitServing3 }
                   myResetFruitServing={ resetFruitServing }                
                   myRandomizeDefaultFruitServing={ randomizeDefaultFruitServing }                                    
                 />
@@ -339,6 +432,7 @@ const App = () => {
                   myServings={ servings }
                   myAddVeggieServing1={ addVeggieServing1 }
                   myAddVeggieServing2={ addVeggieServing2 }
+                  myAddVeggieServing3={ addVeggieServing3 }
                   myResetVeggieServing={ resetVeggieServing }                
                   myRandomizeDefaultVeggieServing={ randomizeDefaultVeggieServing }
                 />
@@ -349,6 +443,7 @@ const App = () => {
                   myServings={ servings }
                   myAddCarbohydrateServing1={ addCarbohydrateServing1 }
                   myAddCarbohydrateServing2={ addCarbohydrateServing2 }
+                  myAddCarbohydrateServing3={ addCarbohydrateServing3 }
                   myResetCarbohydrateServing={ resetCarbohydrateServing }                
                   myRandomizeDefaultCarbohydrateServing={ randomizeDefaultCarbohydrateServing }                  
                 />
@@ -359,21 +454,32 @@ const App = () => {
                   myServings={ servings }
                   myAddProteinServing1={ addProteinServing1 }
                   myAddProteinServing2={ addProteinServing2 }
+                  myAddProteinServing3={ addProteinServing3 }
                   myResetProteinServing={ resetProteinServing }                
                   myRandomizeDefaultProteinServing={ randomizeDefaultProteinServing }                
                 />
               </Route>          
 
               <Route exact path='/mental-health'>
-                <MentalHealth />
+                <MentalHealth 
+                  myServings={ servings }
+                  myAddTakeBreakServing1={ addTakeBreakServing1 }
+                  myAddTakeBreakServing2={ addTakeBreakServing2 }
+                  myAddTakeBreakServing3={ addTakeBreakServing3 }
+                  myResetTakeBreakServing={ resetTakeBreakServing }                
+                  myRandomizeDefaultTakeBreakServing={ randomizeDefaultTakeBreakServing }                
+                />
               </Route>          
 
               <Route exact path='/spiritual-health'>
-                <SpiritualHealth />
-              </Route>          
-
-              <Route exact path='/reference'>
-                <Reference />
+                <SpiritualHealth 
+                  myServings={ servings }
+                  myAddPresentLivingServing1={ addPresentLivingServing1 }
+                  myAddPresentLivingServing2={ addPresentLivingServing2 }
+                  myAddPresentLivingServing3={ addPresentLivingServing3 }
+                  myResetPresentLivingServing={ resetPresentLivingServing }                
+                  myRandomizeDefaultPresentLivingServing={ randomizeDefaultPresentLivingServing }                
+                />
               </Route>          
 
               <Route exact path='/summary'>
