@@ -1,134 +1,136 @@
 
 
+// idea inspired by tutorial on this site:
+// https://aleksandarpopovic.com/Building-a-Task-Management-App-in-React/
+// code modified from the tutorial, which was missing parts required to yield correct results or producing errors
 import React, { useState, useEffect } from 'react';
-import DividerStyled from './DividerStyled';
 import Header from './Header';
 
-import {ReactComponent as HomeBuilding} from '../images/homeBuilding.svg';
-import ParagraphStyled from './ParagraphStyled';
+// localized css styles for components
+import InputStyled from './InputStyled';
+import TextAreaStyled from './TextAreaStyled';
+import ButtonStyled from './ButtonStyled';
 
-// the state used in Home is not saved in App component because no other component needs to access them
+// the state used in Home is not saved in App component because no other components need to access it
 // for example, servings is accessed by Fruit, Veggies, Protein, Carbohydrate, MentalHealth, SpiritualHealth, and Summary
 const Home = () => {
-    const [ tasks, setTasks ] = useState([]);
+    const [ stickies, setStickies ] = useState([]);
 
     // to stop useEffect from being triggered on every render
     useEffect( () => {
-        loadTasksFromLocalStorage()
+        loadStickiesFromLocalStorage()
     }, []);
 
-    // create a new one and add to the existing pile, but its value will be initialized later, except for the priority
-    const addEmptyTask = ( status ) => {
-        const lastTask = tasks[ tasks.length - 1];
+    // create a new one and add to the existing sticky pad, but its value will be initialized later
+    const addEmptySticky = ( status ) => {
+        const lastSticky = stickies[ stickies.length - 1];
 
-        let newTaskId = (lastTask === undefined) ? 1 : lastTask.id + 1;
+        let newStickyId = (lastSticky === undefined) ? 1 : lastSticky.id + 1;
 
-        setTasks( ( tasks ) => [
-            ...tasks,
+        setStickies( ( stickies ) => [
+            ...stickies,
             {
-                id: newTaskId,
+                id: newStickyId,
                 title: "",
-                description: "",
-                urgency: "",
+                // description: "",
                 status: status,
             },
         ])
     }
 
-    // find all those which are not the one to be added, as to remove the duplicate entry
-    // then merge them with the one to be added
+    // find all stickies which are not the one to be added, as to remove the duplicate sticky
+    // then merge them with the new sticky to be added
     // save the result locally
-    const addTask = ( taskToAdd ) => {
-        let filteredTasks = tasks.filter( ( task ) => {
-            return task.id !== taskToAdd.id
+    const addSticky = ( stickyToAdd ) => {
+        let filteredStickies = stickies.filter( ( sticky ) => {
+            return sticky.id !== stickyToAdd.id
         })
 
-        let newTaskList = [ ...filteredTasks, taskToAdd ];
+        let newStickyList = [ ...filteredStickies, stickyToAdd ];
 
-        setTasks( newTaskList );
+        setStickies( newStickyList );
 
-        saveTasksToLocalStorage( newTaskList );
+        saveStickiesToLocalStorage( newStickyList );
     }
 
-    // find all those which are not the one to be deleted
+    // find all stickies which are not the one to be deleted
     // save the result locally
-    const deleteTask = ( taskId ) => {
-        let filteredTasks = tasks.filter( ( task ) => {
-            return task.id !== taskId
+    const deleteSticky = ( stickyId ) => {
+        let filteredStickies = stickies.filter( ( sticky ) => {
+            return sticky.id !== stickyId
         })
 
-        setTasks( filteredTasks );
+        setStickies( filteredStickies );
 
-        saveTasksToLocalStorage( filteredTasks );
+        saveStickiesToLocalStorage( filteredStickies );
     }
 
-    // find the one to change priority
+    // find the one sticky to change priority
     // then find the rest
     // save the results locally
-    const moveTask = ( id, newStatus ) => {
-        let task = tasks.filter( ( task ) => {
-            return task.id === id
+    const moveSticky = ( id, newStatus ) => {
+        let sticky = stickies.filter( ( sticky ) => {
+            return sticky.id === id
         })[ 0 ]
 
-        let filteredTasks = tasks.filter( ( task ) => {
-            return task.id !== id
+        let filteredStickies = stickies.filter( ( sticky ) => {
+            return sticky.id !== id
         })
         
-        task.status = newStatus;
+        sticky.status = newStatus;
 
-        let newTaskList = [ ...filteredTasks, task ];
+        let newStickyList = [ ...filteredStickies, sticky ];
 
-        setTasks( newTaskList );
+        setStickies( newStickyList );
 
-        saveTasksToLocalStorage( newTaskList );
+        saveStickiesToLocalStorage( newStickyList );
     }
 
     // local storage can only accepts string values and therefore transformation is needed
-    const saveTasksToLocalStorage = ( tasks ) => {
-        localStorage.setItem( "task", JSON.stringify( tasks ));
+    const saveStickiesToLocalStorage = ( stickies) => {
+        localStorage.setItem( "sticky", JSON.stringify( stickies ));
     }
 
     // transform string values back to objects
-    const loadTasksFromLocalStorage = () => {
-        let loadedTasks = localStorage.getItem( "tasks" );
+    const loadStickiesFromLocalStorage = () => {
+        let loadedStickies = localStorage.getItem( "stickies" );
 
-        let tasks = JSON.parse( loadedTasks );
+        let stickies = JSON.parse( loadedStickies );
 
-        if ( tasks ){
-            setTasks( tasks );
+        if ( stickies ){
+            setStickies( stickies );
         }
     }
 
+    // each pad represents "stuff" with given status/priority
     return (
         <div>
-            <h1>
-                Task Management
-            </h1>
+            <Header main>
+                Sticky Pads
+            </Header>
 
-            <StatusLine
-                myTasks={ tasks }
-                myAddEmptyTask={ addEmptyTask }
-                myAddTask={ addTask }
-                myDeleteTask={ deleteTask }
-                myMoveTask={ moveTask }
+            <StickPad
+                myStickies={ stickies }
+                myAddEmptySticky={ addEmptySticky }
+                myAddSticky={ addSticky }
+                myDeleteSticky={ deleteSticky }
+                myMoveSticky={ moveSticky }
                 myStatus={ "Backlog" }
             />
-
-            <StatusLine
-                myTasks={ tasks }
-                myAddEmptyTask={ addEmptyTask }
-                myAddTask={ addTask }
-                myDeleteTask={ deleteTask }
-                myMoveTask={ moveTask }
+            <StickPad
+                myStickies={ stickies }
+                myAddEmptySticky={ addEmptySticky }
+                myAddSticky={ addSticky }
+                myDeleteSticky={ deleteSticky }
+                myMoveSticky={ moveSticky }
                 myStatus={ "In Progress" }
             />
-
-            <StatusLine
-                myTasks={ tasks }
-                myAddEmptyTask={ addEmptyTask }
-                myAddTask={ addTask }
-                myDeleteTask={ deleteTask }
-                myMoveTask={ moveTask }
+            <StickPad
+                myStickies={ stickies }
+                myAddEmptySticky={ addEmptySticky }
+                myAddSticky={ addSticky }
+                myDeleteSticky={ deleteSticky }
+                myMoveSticky={ moveSticky }
                 myStatus={ "Done" }
             />
         </div>
@@ -136,31 +138,33 @@ const Home = () => {
 }
 export default Home;
 
-// filter the entire pile and display only those with matching status
-const StatusLine = ({ myTasks, myAddEmptyTask, myAddTask, myDeleteTask, myMoveTask, myStatus }) => {
+// filter the entire pad and display only those with matching status
+const StickPad = ({ myStickies, myAddEmptySticky, myAddSticky, myDeleteSticky, myMoveSticky, myStatus }) => {
 
-    let taskList;
-    let tasksForStatus;
+    let stickyList;
+    let stickiesHaveStatus;
 
     const handleAddEmpty = () => {
-        myAddEmptyTask( myStatus );
+        myAddEmptySticky( myStatus );
     }
 
-    if ( myTasks ){
-        tasksForStatus = myTasks.filter( ( myTask ) => {
-            return myTask.status === myStatus 
+    // filter pads with the same status
+    if ( myStickies ){
+        stickiesHaveStatus = myStickies.filter( ( mySticky ) => {
+            return mySticky.status === myStatus 
         })
     }
 
-    if ( tasksForStatus ) {
-        taskList = tasksForStatus.map( ( task ) => {
+    // prepare stickies for display
+    if ( stickiesHaveStatus ) {
+        stickyList = stickiesHaveStatus.map( ( sticky ) => {
             return (
-                <Task
-                    myAddTask={ ( task ) => myAddTask( task )}
-                    myDeleteTask={ ( id ) => myDeleteTask( id ) }
-                    myMoveTask={ ( id, status ) => myMoveTask( id, status )}
-                    myKey={ task.id }
-                    myTask={ task }
+                <Sticky
+                    myAddSticky={ ( sticky ) => myAddSticky( sticky )}
+                    myDeleteSticky={ ( id ) => myDeleteSticky( id ) }
+                    myMoveSticky={ ( id, status ) => myMoveSticky( id, status )}
+                    myKey={ sticky.id }
+                    mySticky={ sticky }
                 />
             )
         })
@@ -168,25 +172,25 @@ const StatusLine = ({ myTasks, myAddEmptyTask, myAddTask, myDeleteTask, myMoveTa
 
     return (
         <div>
-            <h3>
+            <Header secondary>
                 { myStatus }
-            </h3>
-            { taskList }
-            <button onClick={ handleAddEmpty }>
-                +
-            </button>
+            </Header>
+
+            {/* actually display them here */}
+            { stickyList }
+
+            <ButtonStyled 
+                added2
+                onClick={ handleAddEmpty }>
+                ADD
+            </ButtonStyled>
         </div>
     )
 }
 
-const Task = ({ myAddTask, myDeleteTask, myMoveTask, myKey, myTask }) => {
-    const [ urgencyLevel, setUrgencyLevel ] = useState( myTask.urgency );
-    const [ collapsed, setCollasped ] = useState( myTask.isCollasped );
+const Sticky = ({ myAddSticky, myDeleteSticky, myMoveSticky, myKey, mySticky }) => {
+    const [ collapsed, setCollasped ] = useState( mySticky.isCollasped );
     const [ formAction, setFormAction ] = useState("");
-
-    const setUrgency = ( event ) => {
-        setUrgencyLevel( event.target.attributes.urgency.value );
-    }
 
     const handleSubmit = ( event ) => {
         event.preventDefault();
@@ -195,119 +199,100 @@ const Task = ({ myAddTask, myDeleteTask, myMoveTask, myKey, myTask }) => {
             if ( collapsed ){
                 setCollasped( false );
             } else {
-                let newTask = {
-                    id: myTask.id,
+                let newSticky = {
+                    id: mySticky.id,
                     title: event.target.elements.title.value,
-                    description: event.target.elements.description.value,
-                    urgency: urgencyLevel,
-                    status: myTask.status,
+                    // description: event.target.elements.description.value,
+                    status: mySticky.status,
                     isCollasped: true,
                 }
 
-                myAddTask( newTask );
+                myAddSticky( newSticky );
                 setCollasped( true );
             }
         }
 
         if ( formAction === "delete" ){
-            myDeleteTask( myTask.id );
+            myDeleteSticky( mySticky.id );
         }
     }
 
     const handleMoveLeft = () => {
         let newStatus = "";
 
-        if ( myTask.status === "In Progress" ){
+        if ( mySticky.status === "In Progress" ){
             newStatus = "Backlog";
-        } else if ( myTask.status === "Done" ){
+        } else if ( mySticky.status === "Done" ){
             newStatus = "In Progress";
         }
 
         if ( newStatus !== "" ){
-            myMoveTask( myTask.id, newStatus );
+            myMoveSticky( mySticky.id, newStatus );
         }
     }
 
     const handleMoveRight = () => {
         let newStatus = "";
 
-        if ( myTask.status === "Backlog" ){
+        if ( mySticky.status === "Backlog" ){
             newStatus = "In Progress";
-        } else if ( myTask.status === "In Progress" ){
+        } else if ( mySticky.status === "In Progress" ){
             newStatus = "Done";
         }
 
         if (newStatus !== ""){
-            myMoveTask( myTask.id, newStatus);
+            myMoveSticky( mySticky.id, newStatus);
         }
     }
 
     return (
         <div>
-            <button onClick={ handleMoveLeft }>
-                &#171;
-            </button>
+                <button onClick={ handleMoveLeft }> 
+                    <ButtonStyled left>
+                        &#171;
+                    </ButtonStyled> 
+                </button>
+
             <form onSubmit={ handleSubmit }>
-                <input
+                <InputStyled
                     type="text"
                     name="title"
-                    placeholder="Enter Title"
+                    placeholder="Enter Sticky Content"
                     disabled={ collapsed }
-                    defaultValue={ myTask.title }
+                    defaultValue={ mySticky.title }
                 />
 
-                <textarea 
+                {/* <TextAreaStyled 
                     rows="2"
                     name="description"
                     placeholder="Enter Description"
-                    defaultValue={ myTask.description }
-                />
+                    defaultValue={ mySticky.description }
+                /> */}
 
-                <div>
-                    <label>
-                        <input 
-                            urgency="low"
-                            onChange={ setUrgency }
-                            type="radio"
-                            name="urgency"
-                        />
-                        low
-                    </label>
-                    <label>
-                        <input 
-                            urgency="medium"
-                            onChange={ setUrgency }
-                            type="radio"
-                            name="urgency"
-                        />
-                        medium
-                    </label>
-                    <label>
-                        <input 
-                            urgency="high"
-                            onChange={ setUrgency }
-                            type="radio"
-                            name="urgency"
-                        />
-                        high
-                    </label>
-                </div>
-
-                <button onClick={ () => { setFormAction( "save" )}}>
-                    { collapsed ? "Edit" : "Save" }
-                </button>
+                <ButtonStyled added2>
+                    <button onClick={ () => { setFormAction( "save" )}}>
+                        { collapsed ?                    
+                            <ButtonStyled edit>EDIT</ButtonStyled>
+                            : <ButtonStyled save>SAVE</ButtonStyled>}
+                        
+                    </button>
+                </ButtonStyled>
 
                 {
                     collapsed && (
                         <button onClick={ () => { setFormAction( "delete" )}}>
-                            X
+                            <ButtonStyled delete>
+                                DELETE
+                            </ButtonStyled>
                         </button>
                     )
                 }
             </form>
 
             <button onClick={ handleMoveRight }>
-                &#187;
+                <ButtonStyled right>
+                    &#187;
+                </ButtonStyled>
             </button>
         </div>
     )

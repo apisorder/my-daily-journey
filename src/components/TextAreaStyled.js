@@ -2,7 +2,7 @@
 
 import styled, { css } from 'styled-components';
 
-const ButtonStyled = styled.a`
+const TextAreaStyled = styled.input`
   font-size: 29px;
   display: inline-block;
   border-radius: 3px;
@@ -42,20 +42,6 @@ const ButtonStyled = styled.a`
     margin: 2rem 7rem;
     background: yellowgreen;
   `}
-
-  ${props => props.added2 && css`
-  font-size: 30px;  
-  margin: 2rem 0rem;
-  text-align: center;
-  background: yellowgreen;
-`}
-
-  ${props => props.addition && css`
-  font-size: 38px;  
-  margin: 2rem 7rem;
-  background: yellowgreen;
-  text-align: center;
-`}
 
   ${props => props.summaryed && css`
     font-size: 40px;
@@ -107,34 +93,6 @@ const ButtonStyled = styled.a`
     background: Silver;
   `}
 
-  ${props => props.edit && css`
-  margin: 0rem 2rem;
-  background: lightSalmon;
-`}
-
-${props => props.save && css`
-margin: 0rem 2rem;
-background: lightSalmon;
-`}
-
-${props => props.delete && css`
-margin: 0rem 2rem;
-background: red;
-`}
-
-${props => props.left && css`
-margin: 0rem 2rem;
-font-size: 30px;
-background: Moccasin;
-`}
-
-${props => props.right && css`
-margin: 0rem 2rem;
-font-size: 30px;
-background: Lavender;
-`}
-
-
   :hover {
     border-color: green;
   }
@@ -149,4 +107,4 @@ background: Lavender;
     width: 13rem;
   }
 `
-export default ButtonStyled;
+export default TextAreaStyled;

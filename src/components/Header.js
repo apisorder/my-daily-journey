@@ -8,7 +8,8 @@ margin: 0rem 16rem;
 
 ${props => props.main && css`
     text-align: center;
-    border: indigo 25px dotted;
+    background: orange;
+    border: indigo 25px solid;
     margin: 7rem 7rem;
 `}
 
@@ -22,6 +23,8 @@ ${props => props.mainBorder && css`
 ${props => props.secondary && css`
     font-size: 29px;
     text-align: center;
+    color: green;
+    background: yellow;
     border: BurlyWood 10px solid; 
     margin: 1rem 0rem; 
     text-transform: uppercase;
