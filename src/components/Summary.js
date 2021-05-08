@@ -25,7 +25,7 @@ const Summary = ({ myServings }) => {
                 </AnchorStyled>
 
                 <AnchorStyled progress>
-                    🌡️ progress: { Math.trunc( ( myServings.fruits  /  myServings.defaultFruits ) * 100 ) } %                       
+                    🌡️ progress: { Math.trunc( ( myServings.fruits  /  myServings.defaultFruits ) * 100 ) } %                        
                 </AnchorStyled>
 
                 <AnchorStyled subSummaryedAlt>

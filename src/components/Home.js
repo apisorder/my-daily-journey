@@ -262,19 +262,19 @@ const Sticky = ({ myAddSticky, myDeleteSticky, myMoveSticky, myKey, mySticky }) 
     return (
         <div>
             { 
-                toggled ?
+                toggled && mySticky.status !== "Now" ?
                 <button onClick={ handleMoveUp }> 
                     <AnchorStyled up>
-                        &#171;
+                        👆
                     </AnchorStyled> 
                 </button> : ""
             }
  
             { 
-                toggled ?
+                toggled && mySticky.status !== "No Deadline" ?
                 <button onClick={ handleMoveDown }>
                     <AnchorStyled down>
-                        &#187;
+                        👇
                     </AnchorStyled>
                 </button> : ""
             }
