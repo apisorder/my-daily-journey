@@ -348,7 +348,7 @@ const App = () => {
               <ListItemStyled>
                 <Link to="/fruit">
                   <AnchorStyled>
-                    Fruit
+                    Fruits
                   </AnchorStyled>
                 </Link>
               </ListItemStyled>
@@ -356,7 +356,7 @@ const App = () => {
               <ListItemStyled>
                 <Link to="/veggie">
                   <AnchorStyled silver>
-                    Veggie
+                    Veggies
                   </AnchorStyled>
                 </Link>
               </ListItemStyled>
@@ -364,7 +364,7 @@ const App = () => {
               <ListItemStyled>
                 <Link to="/carbohydrate">
                   <AnchorStyled>
-                    Carbohydrate
+                    Carbohydrates
                   </AnchorStyled>
                 </Link>
               </ListItemStyled>
@@ -372,7 +372,7 @@ const App = () => {
               <ListItemStyled>
                 <Link to="/protein">
                   <AnchorStyled silver>
-                    Protein
+                    Proteins
                   </AnchorStyled>
                 </Link>
               </ListItemStyled>
