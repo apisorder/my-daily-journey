@@ -115,13 +115,13 @@ margin: 0rem 2rem;
 background: silver;
 `}
 
-${props => props.left && css`
+${props => props.up && css`
 margin: 0rem 2rem;
 font-size: 30px;
 background: Moccasin;
 `}
 
-${props => props.right && css`
+${props => props.down && css`
 margin: 0rem 2rem;
 font-size: 30px;
 background: Lavender;

@@ -18,7 +18,7 @@ const Home = () => {
 
     // to stop useEffect from being triggered on every render
     useEffect( () => {
-        loadStickiesFromLocalStorage()
+        getStickiesLocalStorage()
     }, []);
 
     // create a new one and add to the existing sticky pad, but its value will be initialized later
@@ -27,6 +27,7 @@ const Home = () => {
 
         let newStickyId = (lastSticky === undefined) ? 1 : lastSticky.id + 1;
 
+        // keep existing ones, and add a new one with null content
         setStickies( ( stickies ) => [
             ...stickies,
             {
@@ -47,6 +48,7 @@ const Home = () => {
 
         let newStickyPad = [ ...filteredStickies, stickyToAdd ];
 
+        // replace the empty/existing array with these
         setStickies( newStickyPad );
 
         setStickiesLocalStorage( newStickyPad );
@@ -59,53 +61,56 @@ const Home = () => {
             return sticky.id !== stickyId
         })
 
+        // replace the empty/existing array with these
         setStickies( filteredStickies );
 
         setStickiesLocalStorage( filteredStickies );
     }
 
-    // find the one sticky to change priority
+    // find the one sticky to change status, i.e. now/later/no deadline
     // then find the rest
     // save the results locally
     const moveSticky = ( id, newStatus ) => {
+        // find the sticky with the targeted id, change its status, and merge it back
         let sticky = stickies.filter( ( sticky ) => {
             return sticky.id === id
         })[ 0 ]
 
+        sticky.status = newStatus;
+
         let filteredStickies = stickies.filter( ( sticky ) => {
             return sticky.id !== id
         })
-        
-        sticky.status = newStatus;
 
         let newStickyList = [ ...filteredStickies, sticky ];
 
+        // replace the empty/existing array with these
         setStickies( newStickyList );
 
         setStickiesLocalStorage( newStickyList );
     }
 
-    // local storage can only accepts string values and therefore transformation is needed
+    // local storage can only accept string values and therefore format transformation is needed
     const setStickiesLocalStorage = ( stickies) => {
         localStorage.setItem( "stickies", JSON.stringify( stickies ));
     }
 
     // transform string values back to objects
-    const loadStickiesFromLocalStorage = () => {
-        let loadedStickies = localStorage.getItem( "stickies" );
+    const getStickiesLocalStorage = () => {
+        let receivedStickies = localStorage.getItem( "stickies" );
 
-        let stickies = JSON.parse( loadedStickies );
+        let stickies = JSON.parse( receivedStickies );
 
         if ( stickies ){
             setStickies( stickies );
         }
     }
 
-    // each pad represents "stuff" with given status/priority
+    // each pad represents stickies with the given status
     return (
         <div>
             <Header main>
-                Sticky Pads
+                My Stickies
             </Header>
 
             <StickPad
@@ -140,10 +145,12 @@ const Home = () => {
 export default Home;
 
 // filter the entire pad and display only those with matching status
+// stickiesSameStatus are stickies in the sticky pad with matching status
+// stickyPad are the actual stickies to display
 const StickPad = ({ myStickies, myAddEmptySticky, myAddSticky, myDeleteSticky, myMoveSticky, myStatus }) => {
 
-    let stickyList;
-    let stickiesHaveStatus;
+    let stickyPad;
+    let stickiesSameStatus;
 
     const handleAddEmpty = () => {
         myAddEmptySticky( myStatus );
@@ -151,14 +158,14 @@ const StickPad = ({ myStickies, myAddEmptySticky, myAddSticky, myDeleteSticky, m
 
     // filter pads with the same status
     if ( myStickies ){
-        stickiesHaveStatus = myStickies.filter( ( mySticky ) => {
+        stickiesSameStatus = myStickies.filter( ( mySticky ) => {
             return mySticky.status === myStatus 
         })
     }
 
     // prepare stickies for display
-    if ( stickiesHaveStatus ) {
-        stickyList = stickiesHaveStatus.map( ( sticky ) => {
+    if ( stickiesSameStatus ) {
+        stickyPad = stickiesSameStatus.map( ( sticky ) => {
             return (
                 <Sticky
                     myAddSticky={ ( sticky ) => myAddSticky( sticky )}
@@ -178,10 +185,9 @@ const StickPad = ({ myStickies, myAddEmptySticky, myAddSticky, myDeleteSticky, m
             </Header>
 
             {/* actually display them here */}
-            { stickyList }
+            { stickyPad }
 
-            <AnchorStyled 
-                added2
+            <AnchorStyled
                 onClick={ handleAddEmpty }>
                 ADD
             </AnchorStyled>
@@ -189,17 +195,21 @@ const StickPad = ({ myStickies, myAddEmptySticky, myAddSticky, myDeleteSticky, m
     )
 }
 
+// individual sticky note
 const Sticky = ({ myAddSticky, myDeleteSticky, myMoveSticky, myKey, mySticky }) => {
     const [ toggled, setToggled ] = useState( mySticky.isToggled );
     const [ formAction, setFormAction ] = useState("");
 
+    // to prevent browser default action
     const handleSubmit = ( event ) => {
         event.preventDefault();
 
+        // saving or editing the sticky
         if ( formAction === "save" ){
             if ( toggled ){
                 setToggled( false );
             } else {
+                // while editing, toggled the unnecessary functionalities, but when done adding it, bring them back
                 let newSticky = {
                     id: mySticky.id,
                     content: event.target.elements.content.value,
@@ -217,7 +227,8 @@ const Sticky = ({ myAddSticky, myDeleteSticky, myMoveSticky, myKey, mySticky }) 
         }
     }
 
-    const handleMoveLeft = () => {
+    // changing sticky status between now <-> later <-> no deadline
+    const handleMoveUp = () => {
         let newStatus = "";
 
         if ( mySticky.status === "Later" ){
@@ -231,7 +242,7 @@ const Sticky = ({ myAddSticky, myDeleteSticky, myMoveSticky, myKey, mySticky }) 
         }
     }
 
-    const handleMoveRight = () => {
+    const handleMoveDown = () => {
         let newStatus = "";
 
         if ( mySticky.status === "Now" ){
@@ -252,8 +263,8 @@ const Sticky = ({ myAddSticky, myDeleteSticky, myMoveSticky, myKey, mySticky }) 
         <div>
             { 
                 toggled ?
-                <button onClick={ handleMoveLeft }> 
-                    <AnchorStyled left>
+                <button onClick={ handleMoveUp }> 
+                    <AnchorStyled up>
                         &#171;
                     </AnchorStyled> 
                 </button> : ""
@@ -261,8 +272,8 @@ const Sticky = ({ myAddSticky, myDeleteSticky, myMoveSticky, myKey, mySticky }) 
  
             { 
                 toggled ?
-                <button onClick={ handleMoveRight }>
-                    <AnchorStyled right>
+                <button onClick={ handleMoveDown }>
+                    <AnchorStyled down>
                         &#187;
                     </AnchorStyled>
                 </button> : ""
