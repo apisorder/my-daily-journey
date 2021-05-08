@@ -3,7 +3,7 @@
 // these are styled components used with React, essentially localized CSS-styled React components
 import React, { useState } from 'react';
 import DividerStyled from './DividerStyled';
-import ButtonStyled from './ButtonStyled';
+import AnchorStyled from './AnchorStyled';
 import ImageStyled from './ImageStyled';
 
 import ProteinOne from '../images/ProteinOne.png';
@@ -31,19 +31,19 @@ const Protein = ({
     return (
         <>
             <DividerStyled>
-                    <ButtonStyled categoryed>
+                    <AnchorStyled categoryed>
                         🍤🥚🧀 proteins
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled defaulted>
+                    <AnchorStyled defaulted>
                         needed: { myServings.defaultProteins }                        
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled consumed>
+                    <AnchorStyled consumed>
                         consumed: { myServings.proteins }                        
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled remained>
+                    <AnchorStyled remained>
                         {/* if already met the requirement, display 0 */}
                         remaining: { 
                             (myServings.defaultProteins - myServings.proteins) < 0 
@@ -51,43 +51,43 @@ const Protein = ({
                             : (myServings.defaultProteins - myServings.proteins) 
                             }
 
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled added 
+                    <AnchorStyled added 
                         onClick={ myAddProteinServing1 }
                     >
                         +1 🍤
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled added
+                    <AnchorStyled added
                         onClick={ myAddProteinServing2 }
                     >
                         +2 🍤🥚
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled added
+                    <AnchorStyled added
                         onClick={ myAddProteinServing3 }
                     >
                         +3🍤🥚🧀
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled resetDefaulted
+                    <AnchorStyled resetDefaulted
                         onClick={ myRandomizeDefaultProteinServing }
                     >
                         needed 🔃
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled resetConsumed
+                    <AnchorStyled resetConsumed
                         onClick={ myResetProteinServing }
                     >
                         consumed 🔃
-                    </ButtonStyled>
+                    </AnchorStyled>
 
                     { showReminder &&
-                        <ButtonStyled
+                        <AnchorStyled
                             onClick={ toggleReminder }>
                             🎗️ Show Reminder
-                        </ButtonStyled>
+                        </AnchorStyled>
                     }
 
             </DividerStyled>
@@ -114,10 +114,10 @@ const Protein = ({
 
             {
                 !showReminder &&
-                <ButtonStyled
+                <AnchorStyled
                         onClick={ toggleReminder }>
                         Hide Reminder
-                </ButtonStyled>
+                </AnchorStyled>
             }
         </>
     )

@@ -3,7 +3,7 @@
 // these are styled components used with React, essentially localized CSS-styled React components
 import React, { useState } from 'react';
 import DividerStyled from './DividerStyled';
-import ButtonStyled from './ButtonStyled';
+import AnchorStyled from './AnchorStyled';
 import ImageStyled from './ImageStyled';
 
 import SpirtualHealthOne from '../images/SpiritualHealthOne.png';
@@ -31,19 +31,19 @@ const SpirtualHealth = ({
     return (
         <>
             <DividerStyled>
-                    <ButtonStyled categoryed>
+                    <AnchorStyled categoryed>
                         🔥💬🩹 Here and Now
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled defaulted>
+                    <AnchorStyled defaulted>
                         needed: { myServings.defaultPresentLivings }                        
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled consumed>
+                    <AnchorStyled consumed>
                         consumed: { myServings.presentLivings }                        
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled remained>
+                    <AnchorStyled remained>
                         {/* if already met the requirement, display 0 */}
                         remaining: { 
                             (myServings.defaultPresentLivings - myServings.presentLivings) < 0 
@@ -51,43 +51,43 @@ const SpirtualHealth = ({
                             : (myServings.defaultPresentLivings - myServings.presentLivings) 
                             }
 
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled added 
+                    <AnchorStyled added 
                         onClick={ myAddPresentLivingServing1 }
                     >
                         +1 🔥       
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled added
+                    <AnchorStyled added
                         onClick={ myAddPresentLivingServing2 }
                     >
                         +2 🔥💬
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled added
+                    <AnchorStyled added
                         onClick={ myAddPresentLivingServing3 }
                     >
                         +3🔥💬🩹
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled resetDefaulted
+                    <AnchorStyled resetDefaulted
                         onClick={ myRandomizeDefaultPresentLivingServing }
                     >
                         needed 🔃
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled resetConsumed
+                    <AnchorStyled resetConsumed
                         onClick={ myResetPresentLivingServing }
                     >
                         consumed 🔃
-                    </ButtonStyled>
+                    </AnchorStyled>
 
                     { showReminder &&
-                        <ButtonStyled
+                        <AnchorStyled
                             onClick={ toggleReminder }>
                             🎗️ Show Reminder
-                        </ButtonStyled>
+                        </AnchorStyled>
                     }
 
             </DividerStyled>
@@ -114,10 +114,10 @@ const SpirtualHealth = ({
 
             {
                 !showReminder &&
-                <ButtonStyled
+                <AnchorStyled
                         onClick={ toggleReminder }>
                         Hide Reminder
-                </ButtonStyled>
+                </AnchorStyled>
             }
         </>
     )

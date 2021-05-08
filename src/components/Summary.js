@@ -3,7 +3,7 @@
 // these are styled components used with React, essentially localized CSS-styled React components
 import React from 'react';
 import DividerStyled from './DividerStyled';
-import ButtonStyled from './ButtonStyled';
+import AnchorStyled from './AnchorStyled';
 
 // all React state is stored in App.js, and passed in via props, which has been destructured for faster access
 // extract relevant information from App component's state and use Math.trunc() and multiplication to achieve desired output
@@ -12,81 +12,81 @@ const Summary = ({ myServings }) => {
     return (
         <>
             <DividerStyled>
-                <ButtonStyled summaryed>
+                <AnchorStyled summaryed>
                     📝Summary
-                </ButtonStyled>
+                </AnchorStyled>
 
-                <ButtonStyled subSummaryed>
+                <AnchorStyled subSummaryed>
                     fruits 🍉🥝🍒
-                </ButtonStyled>
+                </AnchorStyled>
                 
-                <ButtonStyled goal>
+                <AnchorStyled goal>
                     goal: { myServings.fruits } / { myServings.defaultFruits }                        
-                </ButtonStyled>
+                </AnchorStyled>
 
-                <ButtonStyled progress>
+                <AnchorStyled progress>
                     🌡️ progress: { Math.trunc( ( myServings.fruits  /  myServings.defaultFruits ) * 100 ) } %                       
-                </ButtonStyled>
+                </AnchorStyled>
 
-                <ButtonStyled subSummaryedAlt>
+                <AnchorStyled subSummaryedAlt>
                     veggies 🍆🥦🍅
-                </ButtonStyled>
+                </AnchorStyled>
 
-                <ButtonStyled goalAlt>
+                <AnchorStyled goalAlt>
                     goal: { myServings.veggies } / { myServings.defaultVeggies }                        
-                </ButtonStyled>
+                </AnchorStyled>
 
-                <ButtonStyled progressAlt>
+                <AnchorStyled progressAlt>
                     🌡️ progress: { Math.trunc( ( myServings.veggies  /  myServings.defaultVeggies ) * 100 ) } %                       
-                </ButtonStyled>
+                </AnchorStyled>
 
-                <ButtonStyled subSummaryed>
+                <AnchorStyled subSummaryed>
                     carbs 🍞🍝🥯
-                </ButtonStyled>
+                </AnchorStyled>
                 
-                <ButtonStyled goal>
+                <AnchorStyled goal>
                     goal: { myServings.carbohydrates } / { myServings.defaultCarbohydrates }                        
-                </ButtonStyled>
+                </AnchorStyled>
 
-                <ButtonStyled progress>
+                <AnchorStyled progress>
                     🌡️ progress: { Math.trunc( ( myServings.carbohydrates  /  myServings.defaultCarbohydrates ) * 100 ) } %                       
-                </ButtonStyled>
+                </AnchorStyled>
 
-                <ButtonStyled subSummaryedAlt>
+                <AnchorStyled subSummaryedAlt>
                     proteins 🍤🥚🧀
-                </ButtonStyled>
+                </AnchorStyled>
 
-                <ButtonStyled goalAlt>
+                <AnchorStyled goalAlt>
                     goal: { myServings.proteins } / { myServings.defaultProteins }                        
-                </ButtonStyled>
+                </AnchorStyled>
 
-                <ButtonStyled progressAlt>
+                <AnchorStyled progressAlt>
                     🌡️ progress: { Math.trunc( ( myServings.proteins  /  myServings.defaultProteins ) * 100 ) } %                       
-                </ButtonStyled>
+                </AnchorStyled>
 
-                <ButtonStyled subSummaryed>
+                <AnchorStyled subSummaryed>
                     mental 🛑💤🔇
-                </ButtonStyled>
+                </AnchorStyled>
                 
-                <ButtonStyled goal>
+                <AnchorStyled goal>
                     goal: { myServings.takeBreaks } / { myServings.defaultTakeBreaks }                        
-                </ButtonStyled>
+                </AnchorStyled>
 
-                <ButtonStyled progress>
+                <AnchorStyled progress>
                     🌡️ progress: { Math.trunc( ( myServings.takeBreaks  /  myServings.defaultTakeBreaks ) * 100 ) } %                       
-                </ButtonStyled>
+                </AnchorStyled>
 
-                <ButtonStyled subSummaryedAlt>
+                <AnchorStyled subSummaryedAlt>
                     spiritual 🔥💬🩹
-                </ButtonStyled>
+                </AnchorStyled>
 
-                <ButtonStyled goalAlt>
+                <AnchorStyled goalAlt>
                     goal: { myServings.presentLivings } / { myServings.defaultPresentLivings }                        
-                </ButtonStyled>
+                </AnchorStyled>
 
-                <ButtonStyled progressAlt>
+                <AnchorStyled progressAlt>
                     🌡️ progress: { Math.trunc( ( myServings.presentLivings  /  myServings.defaultPresentLivings ) * 100 ) } %                       
-                </ButtonStyled>
+                </AnchorStyled>
             </DividerStyled>
 
         </>

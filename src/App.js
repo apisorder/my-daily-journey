@@ -24,7 +24,7 @@ import {ReactComponent as About} from './images/about.svg';
 import DividerStyled from './components/DividerStyled';
 import UnorderedListStyled from './components/UnorderedListStyled';
 import ListItemStyled from './components/ListItemStyled';
-import ButtonStyled from './components/ButtonStyled';
+import AnchorStyled from './components/AnchorStyled';
 
 // components for each individual route
 import Home from './components/Home';
@@ -339,65 +339,65 @@ const App = () => {
             <UnorderedListStyled sidebar>
               <ListItemStyled>
                 <Link to="/">
-                  <ButtonStyled silver>
+                  <AnchorStyled silver>
                     Home
-                  </ButtonStyled>
+                  </AnchorStyled>
                 </Link>
               </ListItemStyled>
 
               <ListItemStyled>
                 <Link to="/fruit">
-                  <ButtonStyled>
+                  <AnchorStyled>
                     Fruit
-                  </ButtonStyled>
+                  </AnchorStyled>
                 </Link>
               </ListItemStyled>
 
               <ListItemStyled>
                 <Link to="/veggie">
-                  <ButtonStyled silver>
+                  <AnchorStyled silver>
                     Veggie
-                  </ButtonStyled>
+                  </AnchorStyled>
                 </Link>
               </ListItemStyled>
 
               <ListItemStyled>
                 <Link to="/carbohydrate">
-                  <ButtonStyled>
+                  <AnchorStyled>
                     Carbohydrate
-                  </ButtonStyled>
+                  </AnchorStyled>
                 </Link>
               </ListItemStyled>
 
               <ListItemStyled>
                 <Link to="/protein">
-                  <ButtonStyled silver>
+                  <AnchorStyled silver>
                     Protein
-                  </ButtonStyled>
+                  </AnchorStyled>
                 </Link>
               </ListItemStyled>
 
               <ListItemStyled>
                 <Link to="/mental-health">
-                  <ButtonStyled>
+                  <AnchorStyled>
                     Mental Health
-                  </ButtonStyled>
+                  </AnchorStyled>
                 </Link>
               </ListItemStyled>
 
               <ListItemStyled>
                 <Link to="/spiritual-health">
-                  <ButtonStyled silver>
+                  <AnchorStyled silver>
                   Spiritual Health
-                  </ButtonStyled>
+                  </AnchorStyled>
                 </Link>
               </ListItemStyled>
 
               <ListItemStyled>
                 <Link to="/summary">
-                  <ButtonStyled>
+                  <AnchorStyled>
                     Summary
-                  </ButtonStyled>
+                  </AnchorStyled>
                 </Link>
               </ListItemStyled>
 

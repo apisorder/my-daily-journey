@@ -8,8 +8,7 @@ import Header from './Header';
 
 // localized css styles for components
 import InputStyled from './InputStyled';
-import TextAreaStyled from './TextAreaStyled';
-import ButtonStyled from './ButtonStyled';
+import AnchorStyled from './AnchorStyled';
 
 // the state used in Home is not saved in App component because no other components need to access it
 // for example, servings is accessed by Fruit, Veggies, Protein, Carbohydrate, MentalHealth, SpiritualHealth, and Summary
@@ -31,8 +30,7 @@ const Home = () => {
             ...stickies,
             {
                 id: newStickyId,
-                title: "",
-                // description: "",
+                content: "",
                 status: status,
             },
         ])
@@ -115,23 +113,25 @@ const Home = () => {
                 myAddSticky={ addSticky }
                 myDeleteSticky={ deleteSticky }
                 myMoveSticky={ moveSticky }
-                myStatus={ "Backlog" }
+                myStatus={ "Now" }
             />
+
             <StickPad
                 myStickies={ stickies }
                 myAddEmptySticky={ addEmptySticky }
                 myAddSticky={ addSticky }
                 myDeleteSticky={ deleteSticky }
                 myMoveSticky={ moveSticky }
-                myStatus={ "In Progress" }
+                myStatus={ "Later" }
             />
+
             <StickPad
                 myStickies={ stickies }
                 myAddEmptySticky={ addEmptySticky }
                 myAddSticky={ addSticky }
                 myDeleteSticky={ deleteSticky }
                 myMoveSticky={ moveSticky }
-                myStatus={ "Done" }
+                myStatus={ "No Deadline" }
             />
         </div>
     )
@@ -179,36 +179,35 @@ const StickPad = ({ myStickies, myAddEmptySticky, myAddSticky, myDeleteSticky, m
             {/* actually display them here */}
             { stickyList }
 
-            <ButtonStyled 
+            <AnchorStyled 
                 added2
                 onClick={ handleAddEmpty }>
                 ADD
-            </ButtonStyled>
+            </AnchorStyled>
         </div>
     )
 }
 
 const Sticky = ({ myAddSticky, myDeleteSticky, myMoveSticky, myKey, mySticky }) => {
-    const [ collapsed, setCollasped ] = useState( mySticky.isCollasped );
+    const [ toggled, setToggled ] = useState( mySticky.isToggled );
     const [ formAction, setFormAction ] = useState("");
 
     const handleSubmit = ( event ) => {
         event.preventDefault();
 
         if ( formAction === "save" ){
-            if ( collapsed ){
-                setCollasped( false );
+            if ( toggled ){
+                setToggled( false );
             } else {
                 let newSticky = {
                     id: mySticky.id,
-                    title: event.target.elements.title.value,
-                    // description: event.target.elements.description.value,
+                    content: event.target.elements.content.value,
                     status: mySticky.status,
-                    isCollasped: true,
+                    isToggled: true,
                 }
 
                 myAddSticky( newSticky );
-                setCollasped( true );
+                setToggled( true );
             }
         }
 
@@ -220,10 +219,10 @@ const Sticky = ({ myAddSticky, myDeleteSticky, myMoveSticky, myKey, mySticky }) 
     const handleMoveLeft = () => {
         let newStatus = "";
 
-        if ( mySticky.status === "In Progress" ){
-            newStatus = "Backlog";
-        } else if ( mySticky.status === "Done" ){
-            newStatus = "In Progress";
+        if ( mySticky.status === "Later" ){
+            newStatus = "Now";
+        } else if ( mySticky.status === "No Deadline" ){
+            newStatus = "Later";
         }
 
         if ( newStatus !== "" ){
@@ -234,10 +233,10 @@ const Sticky = ({ myAddSticky, myDeleteSticky, myMoveSticky, myKey, mySticky }) 
     const handleMoveRight = () => {
         let newStatus = "";
 
-        if ( mySticky.status === "Backlog" ){
-            newStatus = "In Progress";
-        } else if ( mySticky.status === "In Progress" ){
-            newStatus = "Done";
+        if ( mySticky.status === "Now" ){
+            newStatus = "Later";
+        } else if ( mySticky.status === "Later" ){
+            newStatus = "No Deadline";
         }
 
         if (newStatus !== ""){
@@ -247,53 +246,45 @@ const Sticky = ({ myAddSticky, myDeleteSticky, myMoveSticky, myKey, mySticky }) 
 
     return (
         <div>
-                <button onClick={ handleMoveLeft }> 
-                    <ButtonStyled left>
-                        &#171;
-                    </ButtonStyled> 
-                </button>
+            <button onClick={ handleMoveLeft }> 
+                <AnchorStyled left>
+                    &#171;
+                </AnchorStyled> 
+            </button>
+            <button onClick={ handleMoveRight }>
+                <AnchorStyled right>
+                    &#187;
+                </AnchorStyled>
+            </button>
 
             <form onSubmit={ handleSubmit }>
                 <InputStyled
                     type="text"
-                    name="title"
+                    name="content"
                     placeholder="Enter Sticky Content"
-                    disabled={ collapsed }
-                    defaultValue={ mySticky.title }
+                    disabled={ toggled }
+                    defaultValue={ mySticky.content }
                 />
 
-                {/* <TextAreaStyled 
-                    rows="2"
-                    name="description"
-                    placeholder="Enter Description"
-                    defaultValue={ mySticky.description }
-                /> */}
 
-                <ButtonStyled added2>
-                    <button onClick={ () => { setFormAction( "save" )}}>
-                        { collapsed ?                    
-                            <ButtonStyled edit>EDIT</ButtonStyled>
-                            : <ButtonStyled save>SAVE</ButtonStyled>}
-                        
-                    </button>
-                </ButtonStyled>
+                <button onClick={ () => { setFormAction( "save" )}}>
+                    { 
+                        toggled ?                    
+                        <AnchorStyled edit>EDIT</AnchorStyled>
+                        : <AnchorStyled save>SAVE</AnchorStyled>
+                    }
+                </button>
 
                 {
-                    collapsed && (
+                    toggled && (
                         <button onClick={ () => { setFormAction( "delete" )}}>
-                            <ButtonStyled delete>
+                            <AnchorStyled delete>
                                 DELETE
-                            </ButtonStyled>
+                            </AnchorStyled>
                         </button>
                     )
                 }
             </form>
-
-            <button onClick={ handleMoveRight }>
-                <ButtonStyled right>
-                    &#187;
-                </ButtonStyled>
-            </button>
         </div>
     )
 }

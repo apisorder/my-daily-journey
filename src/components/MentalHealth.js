@@ -3,7 +3,7 @@
 // these are styled components used with React, essentially localized CSS-styled React components
 import React, { useState } from 'react';
 import DividerStyled from './DividerStyled';
-import ButtonStyled from './ButtonStyled';
+import AnchorStyled from './AnchorStyled';
 import ImageStyled from './ImageStyled';
 
 import MentalHealthOne from '../images/MentalHealthOne.png';
@@ -31,19 +31,19 @@ const MentalHealth = ({
     return (
         <>
             <DividerStyled>
-                    <ButtonStyled categoryed>
+                    <AnchorStyled categoryed>
                         🛑💤🔇 BREAK
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled defaulted>
+                    <AnchorStyled defaulted>
                         needed: { myServings.defaultTakeBreaks }                        
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled consumed>
+                    <AnchorStyled consumed>
                         consumed: { myServings.takeBreaks }                        
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled remained>
+                    <AnchorStyled remained>
                         {/* if already met the requirement, display 0 */}
                         remaining: { 
                             (myServings.defaultTakeBreaks - myServings.takeBreaks) < 0 
@@ -51,43 +51,43 @@ const MentalHealth = ({
                             : (myServings.defaultTakeBreaks - myServings.takeBreaks) 
                             }
 
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled added 
+                    <AnchorStyled added 
                         onClick={ myAddTakeBreakServing1 }
                     >
                         +1 🛑       
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled added
+                    <AnchorStyled added
                         onClick={ myAddTakeBreakServing2 }
                     >
                         +2 🛑💤
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled added
+                    <AnchorStyled added
                         onClick={ myAddTakeBreakServing3 }
                     >
                         +3🛑💤🔇
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled resetDefaulted
+                    <AnchorStyled resetDefaulted
                         onClick={ myRandomizeDefaultTakeBreakServing }
                     >
                         needed 🔃
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled resetConsumed
+                    <AnchorStyled resetConsumed
                         onClick={ myResetTakeBreakServing }
                     >
                         consumed 🔃
-                    </ButtonStyled>
+                    </AnchorStyled>
 
                     { showReminder &&
-                        <ButtonStyled
+                        <AnchorStyled
                             onClick={ toggleReminder }>
                             🎗️Show Reminder
-                        </ButtonStyled>
+                        </AnchorStyled>
                     }
 
             </DividerStyled>
@@ -114,10 +114,10 @@ const MentalHealth = ({
 
             {
                 !showReminder &&
-                <ButtonStyled
+                <AnchorStyled
                         onClick={ toggleReminder }>
                         Hide Reminder
-                </ButtonStyled>
+                </AnchorStyled>
             }
         </>
     )

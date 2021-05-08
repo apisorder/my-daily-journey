@@ -3,7 +3,7 @@
 // these are styled components used with React, essentially localized CSS-styled React components
 import React, { useState } from 'react';
 import DividerStyled from './DividerStyled';
-import ButtonStyled from './ButtonStyled';
+import AnchorStyled from './AnchorStyled';
 import ImageStyled from './ImageStyled';
 
 import FruitOne from '../images/FruitOne.png';
@@ -31,19 +31,19 @@ const Fruit = ({
     return (
         <>
             <DividerStyled>
-                    <ButtonStyled categoryed>
+                    <AnchorStyled categoryed>
                         🍉🥝🍒 fruits
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled defaulted>
+                    <AnchorStyled defaulted>
                         needed: { myServings.defaultFruits }
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled consumed>
+                    <AnchorStyled consumed>
                         consumed: { myServings.fruits }                        
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled remained>
+                    <AnchorStyled remained>
                         {/* if already met the requirement, display 0 */}
                         remaining: { 
                             (myServings.defaultFruits - myServings.fruits) < 0 
@@ -51,43 +51,43 @@ const Fruit = ({
                             : (myServings.defaultFruits - myServings.fruits) 
                             }
 
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled added 
+                    <AnchorStyled added 
                         onClick={ myAddFruitServing1 }
                     >
                         +1 🍉       
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled added
+                    <AnchorStyled added
                         onClick={ myAddFruitServing2 }
                     >
                         +2 🍉🥝
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled added
+                    <AnchorStyled added
                         onClick={ myAddFruitServing3 }
                     >
                         +3🍉🥝🍒
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled
+                    <AnchorStyled
                         onClick={ myRandomizeDefaultFruitServing }
                     >
                         needed 🔃
-                    </ButtonStyled>
+                    </AnchorStyled>
 
-                    <ButtonStyled
+                    <AnchorStyled
                         onClick={ myResetFruitServing }
                     >
                         consumed 🔃
-                    </ButtonStyled>
+                    </AnchorStyled>
 
                     { showReminder &&
-                        <ButtonStyled
+                        <AnchorStyled
                             onClick={ toggleReminder }>
                             🎗️ Show Reminder
-                        </ButtonStyled>
+                        </AnchorStyled>
                     }
 
             </DividerStyled>
@@ -114,10 +114,10 @@ const Fruit = ({
 
             {
                 !showReminder &&
-                <ButtonStyled
+                <AnchorStyled
                         onClick={ toggleReminder }>
                         Hide Reminder
-                </ButtonStyled>
+                </AnchorStyled>
             }
         </>
     )

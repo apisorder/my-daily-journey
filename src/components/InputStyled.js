@@ -1,9 +1,9 @@
 
 
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const InputStyled = styled.textarea`
-  font-size: 29px;
+  font-size: 50px;
   display: inline-block;
   border-radius: 3px;
   

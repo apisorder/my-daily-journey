@@ -2,7 +2,7 @@
 
 import styled, { css } from 'styled-components';
 
-const ButtonStyled = styled.a`
+const AnchorStyled = styled.a`
   font-size: 29px;
   display: inline-block;
   border-radius: 3px;
@@ -42,13 +42,6 @@ const ButtonStyled = styled.a`
     margin: 2rem 7rem;
     background: yellowgreen;
   `}
-
-  ${props => props.added2 && css`
-  font-size: 30px;  
-  margin: 2rem 0rem;
-  text-align: center;
-  background: yellowgreen;
-`}
 
   ${props => props.addition && css`
   font-size: 38px;  
@@ -109,7 +102,7 @@ const ButtonStyled = styled.a`
 
   ${props => props.edit && css`
   margin: 0rem 2rem;
-  background: lightSalmon;
+  background: lightsalmon;
 `}
 
 ${props => props.save && css`
@@ -119,7 +112,7 @@ background: lightSalmon;
 
 ${props => props.delete && css`
 margin: 0rem 2rem;
-background: red;
+background: silver;
 `}
 
 ${props => props.left && css`
@@ -149,4 +142,4 @@ background: Lavender;
     width: 13rem;
   }
 `
-export default ButtonStyled;
+export default AnchorStyled;
