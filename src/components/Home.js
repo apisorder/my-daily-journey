@@ -13,6 +13,7 @@ import AnchorStyled from './AnchorStyled';
 // the state used in Home is not saved in App component because no other components need to access it
 // for example, servings is accessed by Fruit, Veggies, Protein, Carbohydrate, MentalHealth, SpiritualHealth, and Summary
 const Home = () => {
+    // stickies are Post-It stickers
     const [ stickies, setStickies ] = useState([]);
 
     // to stop useEffect from being triggered on every render
@@ -44,11 +45,11 @@ const Home = () => {
             return sticky.id !== stickyToAdd.id
         })
 
-        let newStickyList = [ ...filteredStickies, stickyToAdd ];
+        let newStickyPad = [ ...filteredStickies, stickyToAdd ];
 
-        setStickies( newStickyList );
+        setStickies( newStickyPad );
 
-        saveStickiesToLocalStorage( newStickyList );
+        setStickiesLocalStorage( newStickyPad );
     }
 
     // find all stickies which are not the one to be deleted
@@ -60,7 +61,7 @@ const Home = () => {
 
         setStickies( filteredStickies );
 
-        saveStickiesToLocalStorage( filteredStickies );
+        setStickiesLocalStorage( filteredStickies );
     }
 
     // find the one sticky to change priority
@@ -81,12 +82,12 @@ const Home = () => {
 
         setStickies( newStickyList );
 
-        saveStickiesToLocalStorage( newStickyList );
+        setStickiesLocalStorage( newStickyList );
     }
 
     // local storage can only accepts string values and therefore transformation is needed
-    const saveStickiesToLocalStorage = ( stickies) => {
-        localStorage.setItem( "sticky", JSON.stringify( stickies ));
+    const setStickiesLocalStorage = ( stickies) => {
+        localStorage.setItem( "stickies", JSON.stringify( stickies ));
     }
 
     // transform string values back to objects
@@ -244,18 +245,28 @@ const Sticky = ({ myAddSticky, myDeleteSticky, myMoveSticky, myKey, mySticky }) 
         }
     }
 
+    // the default functionality is to add a sticky
+    // if the sticky has been saved, some functionalities can be toggled, i.e. save
+    // similarly, if a sticky has already been saved, some functionalites are appropriate, i.e. edit, delete, changing to a differnt pad
     return (
         <div>
-            <button onClick={ handleMoveLeft }> 
-                <AnchorStyled left>
-                    &#171;
-                </AnchorStyled> 
-            </button>
-            <button onClick={ handleMoveRight }>
-                <AnchorStyled right>
-                    &#187;
-                </AnchorStyled>
-            </button>
+            { 
+                toggled ?
+                <button onClick={ handleMoveLeft }> 
+                    <AnchorStyled left>
+                        &#171;
+                    </AnchorStyled> 
+                </button> : ""
+            }
+ 
+            { 
+                toggled ?
+                <button onClick={ handleMoveRight }>
+                    <AnchorStyled right>
+                        &#187;
+                    </AnchorStyled>
+                </button> : ""
+            }
 
             <form onSubmit={ handleSubmit }>
                 <InputStyled
@@ -265,7 +276,6 @@ const Sticky = ({ myAddSticky, myDeleteSticky, myMoveSticky, myKey, mySticky }) 
                     disabled={ toggled }
                     defaultValue={ mySticky.content }
                 />
-
 
                 <button onClick={ () => { setFormAction( "save" )}}>
                     { 

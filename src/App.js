@@ -1,8 +1,9 @@
 
 
+// entry point to the entire application
 import React, { useState } from "react";
 
-// react router
+// react router, hash router necessary for GitHub pages
 import { 
   HashRouter as Router, 
   Switch, 
@@ -51,10 +52,10 @@ const GlobalStyle = createGlobalStyle`
 // main
 // most React state is stored in App.js, and passed in via props to most routes,
 // where each component extracts relevant information from the passed props
-// the supported functionalities are adding 1, 2, or 3 servings consumed, and calculates the result based on the default serving size
+// the supported functionalities are adding 1, 2, or 3 servings consumed, 
+// and calculates the result based on the default serving size
 // additionally, resetting default serving size and servings consumed are also supported
 const App = () => {
-  // encourageMessage
   const [ servings, setServings ] = useState({
     // FDA recommends 4 servings daily
     defaultFruits: 3,
@@ -328,7 +329,6 @@ const App = () => {
           </DividerStyled>
           {/* header */}
           {/* upper-div: header */}
-
 
         {/* middle-div: sidebar (left) & main display (right) */}
         <DividerStyled comparison>
